@@ -1,0 +1,3188 @@
+
+=== PAGE 1 ===
+K L Deemed to be UniversityDepartment of computer  science and Engineering -1 -- KLBCH
+Course Handout
+2026-2027, Odd Sem
+Course Title : DA TA STRUCTURES AND ALGORITHMS - 3
+Course Code : 25CS2103E
+L-T-P-S Structur e : 2-0-2-4
+Pre-requisite : 25SC1305E-DA TA STRUCTURES AND ALGORITHMS - 2
+Credits : 4
+Course Coordinator : Anitha Chekuri
+Team of Instructors: Ch Anuradha, Ch Anuradha, Ch Anuradha, Dyuti Banerjee , Dyuti Banerjee ,
+Dyuti Banerjee , MUNIRAJU VADLAMUDI, Dr .JARAJAPU DEVI,
+Dr.JARAJAPU DEVI, Dr .JARAJAPU DEVI, Yamini Jonnala, Yamini Jonnala,
+Yamini Jonnala, Anitha Chekuri, Anitha Chekuri, Anitha Chekuri,
+LakshmiPrasanna Yeluri , Swathi D, Swathi D, Swathi D, Bedudoori
+Dwarakanath, Chandusha kanda, Chandusha kanda, Chandusha kanda,
+venkateswararao Katevarapu, venkateswararao Katevarapu, Sanikommu
+Madhavi, Sanikommu Madhavi, Sanikommu Madhavi, I V SAI HARITHA, I V
+SAI HARITHA, JAGAN MOHAN REDDY  DNADA, USHA  MUNAGOTI,
+VINA Y KUMAR SRIPERAMBUDURI, VINA Y KUMAR
+SRIPERAMBUDURI, VINA Y KUMAR SRIPERAMBUDURI, Dasari .,
+Sireesha Vikkurty , Sireesha Vikkurty , Sireesha Vikkurty , Raghupathi Manthena,
+Soumya Enukonda
+Teaching Associates :
+Syllabus : Module-1 (T extHack as a System — The Advanced-Algorithm Question Bank): •
+A working text-analytics engine on day one — students issue queries against an
+Indian-language Wikipedia corpus and observe results before any internals. • The
+query classes TextHack answers: pattern search, fuzzy matching with edit
+distance, document similarity , citation-flow analysis, project-scheduling
+demonstrations, lar ge-prime primality testing. • How each query class maps to an
+advanced-algorithm family: pattern search → string algorithms; fuzzy matching
+→ DP; similarity → suf fix structures; flow → max-flow; scheduling → NP-hard
+with approximation; primality → randomised algorithms. • Why the advanced
+canon exists: linear and tree/graph algorithms from DSA-1/DSA-2 cannot solve
+sub-quadratic substring search, optimal alignment, or capacity-constrained
+assignment. • A reading of the algorithms textbook canon: CLRS Part VII,
+Kleinber g-Tardos Chapters 6-13, Erickson Chapters 4-12 — the territory we
+cover . • Continuation of the engine constraint from DSA-1/DSA-2: java.util.*
+forbidden inside the engine; students hand-build every algorithm. • Reading
+TextHack's public API end-to-end before any implementation work. • A first
+design pass: which algorithm answers each query and what is its asymptotic cost?
+Module-2 (String Algorithms): • The string-matching problem: pattern P  inside
+text T; the naïve O(nm) algorithm and why we need better . • Knuth-Morris-Pratt
+(KMP): the failure function, why the algorithm is linear , the pre-processing
+intuition. • Z-function: the modern alternative to KMP; computing all Z-values in
+linear time. • Rabin-Karp with polynomial rolling hash: the average-case linear
+running time, the modular arithmetic discipline, double-hashing for collision
+avoidance. • Multi-pattern matching with Aho-Corasick at intuition level: the trie-
+with-failure-links construction. • Suf fix arrays: definition, the SA-IS construction
+in O(n) at conceptual level, practical O(n log² n) implementation. • Longest
+Common Prefix (LCP) array: the Kasai algorithm in linear time given a suf fix
+array . • Suf fix automata and suf fix trees at preview level — what they enable that7/20/26, 11:23 AM about:blank
+about:blank 1/50
+=== PAGE 2 ===
+suffix arrays do not (the deep dive lives in algorithm electives). Module-3
+(Advanced Dynamic Programming): • Recap of the DP  framework from DSA-2:
+overlapping subproblems and optimal substructure. • Edit distance and its
+variants: Levenshtein, Damerau-Levenshtein, weighted edit distance; the Wagner -
+Fischer algorithm. • Sequence alignment for genome data: Needleman-W unsch
+(global), Smith-W aterman (local); the gap-penalty discussion. • Interval DP:
+matrix-chain multiplication, optimal binary search tree, the O(n³) and O(n² log n)
+variants. • Bitmask DP: travelling salesman in O(2ⁿ · n²), Hamiltonian path
+detection, set-cover variants. • DP  on trees: tree-DP  for subset sums, DP  for
+diameter and centroid problems; the rerooting technique. • DP  on subsets / SOS
+DP: sum-over -subsets in O(n · 2ⁿ); applications to inclusion-exclusion problems.
+• When DP  is the wrong tool: problems with no overlapping subproblems,
+problems where greedy suf fices, problems where the state space is exponential
+without bitmask compression. Module-4 (Network Flow): • The max-flow
+problem: source, sink, capacity , conservation; the integer -capacity setup that
+admits integer flows. • The Ford-Fulkerson method: augmenting paths in the
+residual graph; correctness via the max-flow min-cut theorem. • Edmonds-Karp:
+BFS to find augmenting paths gives O(VE²); the practical reference
+implementation. • Dinic's algorithm: blocking flows on level graphs in O(V²E);
+near-optimal for typical inputs. • Min-cut as the dual of max-flow: solving the
+partitioning problem via flow . • Bipartite matching as a max-flow application:
+König's theorem, perfect matching, assignment problems. • Min-cost max-flow at
+intuition level: SSP  and cycle-cancelling, applications to optimal-cost
+assignment. • Practical reductions: image segmentation as min-cut, project-
+selection as min-cut, scheduling with deadlines as flow . Module-5 (NP-
+Completeness and Approximation): • Decision problems vs optimisation
+problems; polynomial-time reductions as the formal tool of comparison. • P , NP,
+co-NP: definitions through verification; the canonical witnesses. • NP-
+completeness: Cook-Levin theorem at intuition level; SA T as the canonical NP-
+complete problem. • The reduction zoo: 3-SA T → CLIQUE → INDEPENDENT -
+SET → VER TEX-COVER; SUBSET -SUM and KNAPSACK; HAM-CYCLE →
+TSP. • Recognising NP-hardness: the practical engineer's checklist of canonical
+NP-hard structures. • Approximation algorithms: ratio guarantees, the worked
+example of vertex-cover 2-approximation via maximal matching. • PT AS,
+FPTAS, APX at intuition level; problems where (1+ε) approximations exist and
+problems where they don't. • Parameterised complexity at preview level: FPT ,
+kernelisation, problems where the exponential is in a small parameter , not the
+input. Module-6 (Randomised and Parallel Algorithms): • Las Vegas vs Monte
+Carlo: the dif ference between always-correct and correct-with-probability . •
+Randomised quicksort revisited from DSA-1 with rigorous expected-time
+analysis. • Miller -Rabin primality test: the witness construction, the Carmichael-
+number challenge, why probabilistic primality is enough in practice. •
+Randomised hashing: universal hash families, perfect hashing, why hashing is
+fundamentally probabilistic. • Reservoir sampling for streaming data: the elegant
+proof of uniform sampling. • Parallel-algorithm intuition: work and span (T₁ and
+T_∞), Brent's theorem, the speedup ceiling. • Parallel primitives: parallel reduce,
+parallel scan/prefix-sum (Blelloch), parallel sort at intuition level. • Where
+parallelism shines and where it doesn't: data-parallel vs task-parallel, the
+embarrassingly-parallel category . (GPU specifics belong to DLAC; distributed
+parallelism belongs to SDSR.)
+Text Books : 1. Introduction to Algorithms, Cormen, Leiserson, Rivest & Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2. Algorithm Design, Jon Kleinber g & Éva Tardos, Pearson,
+2005 3. Network Flows: Theory , Algorithms, and Applications, Ravindra K.
+Ahuja, Thomas L. Magnanti & James B. Orlin, Pearson, 1993 4. Approximation7/20/26, 11:23 AM about:blank
+about:blank 2/50
+=== PAGE 3 ===
+Algorithms, Vijay V. Vazirani, Springer , 2003 5. Randomized Algorithms, Rajeev
+Motwani & Prabhakar Raghavan, Cambridge University Press, 1995
+Refer ence Books :1. Algorithms, Jef f Erickson, Free PDF — Illinois, 2019 2. Competitive
+Programmer's Handbook, Antti Laaksonen, Free PDF — University of Helsinki,
+2018
+Web Links :1. Advanced Algorithms (CS 6.046J)- MIT  OpenCourseW are Link:
+https://ocw .mi t.edu/courses/ 6-046j-design-and-analysis-of-algorithms-spring-
+2015/ 2. Advanced Data Structures- MIT  OCW  6.851 Link:
+https://ocw .mit.edu/courses/6-851-advanced-data-structures-spring-2012/?
+utm_source=chatgpt.com 3. Competitive Programming ICPC Track Codeforces
+EDU Link: https://codeforces.com/catalog?utm_source=chatgpt.com
+MOOCS :1. Algorithms Specialization Link:
+https://www .coursera.or g/specializations/algorithms 2. Data Structures and
+Algorithms Specialization Link: https://www .coursera.or g/specializations/data-
+structures-algorithms 3. Data Structures and Algorithms Design (NPTEL) Link:
+https://nptel.ac.in/courses/106104128 4. 6.046J Design and Analysis of
+Algorithms (NPTEL) Link: https://ocw .mit.edu/courses/6-046j-design-and-
+analysis-of-algorithms-spring-2015/ 5. Codeforces (NPTEL) Link:
+https://codeforces.com/
+Course Rationale :Data Structures and Algorithms - 3 closes the algorithm-design canon. After
+DSA-1 (linear DS) and DSA-2 (trees, graphs, intro DP), this course owns the
+advanced territory: string algorithms, deep dynamic programming, network
+flows, NP-completeness with reductions and approximation, and the
+randomised/parallel-algorithm foundations. The PBL  track is OUTSIDE-IN:
+students see a working text-analytics engine on day one — pattern search, fuzzy
+matching, document similarity , citation-flow analysis, scheduling — and across
+twelve weeks they implement every algorithm beneath it. java.util.* remains
+forbidden inside the engine. Strict no-overlap: distributed-system theory belongs
+to SDSR (T06); GPU parallelism belongs to DLAC (T07). Pre-requisite: DSA-2.
+Enables: every advanced-algorithm and AI course downstream. Placement
+corridor: ₹20-40 LP A roles at product companies (Google, Microsoft, Amazon,
+Meta) and quantitative firms (T ower Research, Optiver , Citadel) where advanced-
+algorithm interview rounds (string DP , flow , NP-hard problem reductions) are
+decisive at the senior -fresher level.
+Course Objectives :Upon successful completion of this course, students will be able to: 1.
+Understand advanced algorithmic paradigms and their applicability to complex
+computational problems arising in text processing, optimization, and lar ge-scale
+data analysis. 2. Apply ef ficient string processing techniques, advanced dynamic
+programming methods, and network flow algorithms to solve real-world
+computational challenges. 3. Analyze the computational complexity of problems
+using complexity classes, polynomial-time reductions, and NP-completeness
+concepts. 4. Evaluate approximation techniques and parameterized approaches
+for obtaining practical solutions to computationally intractable problems. 5.
+Apply randomized and parallel algorithmic techniques to improve computational
+efficiency , scalability , and performance in modern computing environments. 6.
+Develop algorithmic solutions by integrating multiple advanced paradigms and
+assessing their correctness, ef ficiency , and suitability for diverse application
+domains.
+Global Certifications : 1. ICPC Regional Qualifier Link: https://icpc.global/?utm_source=chatgpt.com 2.
+Codeforces Candidate Master Rating Link: https://codeforces.com/ratings?
+utm_source=chatgpt.com 3. Google Code Jam Qualifier Link:
+https://github.com/google/coding-competitions-archive?utm_source=chatgpt.com
+4. NPTEL  Design and Analysis of Algorithms Link:7/20/26, 11:23 AM about:blank
+about:blank 3/50
+=== PAGE 4 ===
+https://nptel.ac.in/courses/106106131 5. Meta Hacker Cup Qualifier Link:
+https://www .metahackercup.com/?utm_source=chatgpt.com
+Industry Specific Tools :1. CodeT antra Link: https://auth.codetantra.com/a/d.jsp?c=y 2. LeetCode
+Link:https://1eetcode.com/ 3. HackerRank Link:https://www .hackerrank.com/ 4.
+Apache Commons Text- Link:https://commons.apache.or g/proper/commons-text/
+5. JGraphT  Link:https://jgrapht.or g
+COURSE OUTCOMES (COs):
+CO
+NOCourse Outcome (CO) PO/PSOBlooms
+Taxonomy
+Level
+(BTL)
+CO1Evaluate problem-class signatures (substring search, sequence
+alignment, flow on a network, NP-hard scheduling) and select an
+appropriate advanced-algorithm strategy .PO4,PSO1,PO2 5
+CO2Apply linear -time string algorithms (KMP , Z-function, Rabin-Karp
+with rolling hash) and suf fix-based structures (suf fix array , LCP
+array , suffix automaton at intuition level) to solve lar ge-scale
+pattern-matching problems.PO1,PO3,PSO1 3
+CO3Apply advanced dynamic-programming patterns — interval DP ,
+bitmask DP , DP on trees, DP  on subsets — to design polynomial-
+time algorithms for combinatorial optimisation.PSO1,PO2,PO1 3
+CO4Apply network-flow algorithms (Ford-Fulkerson with Edmonds-
+Karp, Dinic at intuition level) and the max-flow / min-cut duality to
+model and solve assignment, matching, and capacity-constrained
+problems.PO1,PO2,PO3 3
+CO5Analyze NP-completeness — the classes P , NP, NP-complete, NP-
+hard, the canonical reductions (3-SA T → vertex cover →
+independent set, etc.) — and design approximation algorithms with
+provable approximation ratios for selected NP-hard problems.PO1,PO2,PO4 4
+CO6Apply randomised algorithms (Las Vegas, Monte Carlo) and
+parallel-algorithm primitives (parallel prefix sum, parallel reduce,
+work-span analysis) to design algorithms whose performance
+benefits from randomness or multiple processors.PO1,PO3 3
+COURSE OUTCOME INDICATORS (COIs)::
+Outcome
+No.Highest
+BTLCOI-2 COI-3 COI-4 COI-5
+CO1 5 Btl-2
+Explain the
+relationship between
+problem domains and
+advanced algorithmic
+paradigms such as
+String Algorithms,
+Dynamic
+Programming,
+Network Flow ,
+ApproximationBtl-3
+Apply suitable
+advanced algorithmic
+techniques to solve
+pattern matching,
+similarity analysis,
+scheduling, and
+primality testing
+problems.Btl-4
+Analyze the
+limitations of classical
+linear , tree, and graph
+algorithms and
+compare alternative
+advanced algorithmic
+approaches based on
+computational
+requirements.Btl-5
+Evaluate algorithm
+selection strategies by
+assessing asymptotic
+performance,
+implementation
+constraints, and
+suitability for dif ferent
+text analytics and
+optimization
+problems.7/20/26, 11:23 AM about:blank
+about:blank 4/50
+=== PAGE 5 ===
+Outcome
+No.Highest
+BTLCOI-2 COI-3 COI-4 COI-5
+Algorithms, and
+Randomized
+Algorithms.
+CO2 3Btl-2
+Explain the working
+principles of Naïve
+Pattern Matching,
+KMP , Z-Function,
+Rabin-Karp, Aho-
+Corasick, Suf fix
+Arrays, and Kasai
+algorithms for
+efficient string
+processing.Btl-3
+Apply string matching
+and suf fix-based
+algorithms to solve
+pattern searching,
+multi-pattern
+matching, substring
+analysis, and text
+processing problems.
+CO3 3Btl-2
+Explain the principles
+and recurrence
+relations of Dynamic
+Programming
+algorithms including
+Wagner -Fischer ,
+Needleman-W unsch,
+Smith-W aterman,
+Matrix Chain
+Multiplication,
+Optimal Binary
+Search Trees, and
+Travelling
+Salesperson Problem
+formulations.Btl-3
+Apply Dynamic
+Programming
+techniques to solve
+optimization problems
+involving string
+matching, sequence
+alignment, matrix
+operations, graph
+traversal,
+combinatorial
+optimization, and
+subset-based
+computations.
+CO4 3Btl-2
+Explain the working
+principles of Ford-
+Fulkerson, Edmonds-
+Karp, and Dinic’ s
+algorithms, Maximum
+Flow–Minimum Cut
+theorem, König’ s
+theorem, and
+Minimum Cost
+Maximum Flow for
+solving network
+optimization
+problems.Btl-3
+Apply network flow
+algorithms to
+determine maximum
+flow, minimum cuts,
+bipartite matchings,
+assignments,
+scheduling solutions,
+project selection
+strategies, and graph-
+cut based
+applications.
+CO5 4 Btl-2
+Explain the
+significance of Cook-
+Levin theorem,
+polynomial
+reductions, SA T, 3-
+SAT, Clique,
+Independent Set,Btl-3
+Apply polynomial-
+time reductions,
+complexity class
+concepts, and
+approximation
+algorithms to classify
+computationalBtl-4
+Analyze the
+computational
+complexity of
+problems by
+examining reductions,
+NP-completeness
+proofs, approximation7/20/26, 11:23 AM about:blank
+about:blank 5/50
+=== PAGE 6 ===
+Outcome
+No.Highest
+BTLCOI-2 COI-3 COI-4 COI-5
+Vertex Cover , Subset
+Sum, Knapsack,
+Hamiltonian Cycle,
+Travelling
+Salesperson Problem,
+and approximation
+techniques with
+performance
+guarantees.problems and obtain
+near-optimal solutions
+for NP-Hard
+optimization
+problems.ratios, and the
+effectiveness of
+PTAS, FPT AS, APX,
+and parameterized
+approaches.
+CO6 3Btl-2
+Explain the principles
+of Randomized
+QuickSort, Miller -
+Rabin primality
+testing, randomized
+hashing techniques,
+parallel reduction,
+prefix-sum
+algorithms, parallel
+sorting methods, and
+performance measures
+in parallel computing.Btl-3
+Apply randomized
+and parallel
+algorithmic
+techniques to solve
+computational
+problems involving
+sorting, hashing,
+primality testing, data
+sampling, and
+scalable parallel
+processing.
+PROGRAM OUTCOMES & PROGRAM SPECIFIC OUTCOMES (POs/PSOs)
+Po
+No.Program Outcome
+Lectur e Course DELIVER Y Plan:
+Sess.No. CO COI TopicBook No[CH
+No][Page No]Teaching-
+Learning
+MethodsEvaluationComponents
+1 CO1COI-
+2Introduction to Advanced
+Algorithmic Problems and
+Computational ModelsTB1 [Ch.1]
+[P.No.5-18]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+2 CO1 COI- Problem Classification and TB1 [Ch.1] Chalk,L TC,T alkActive Learning7/20/26, 11:23 AM about:blank
+about:blank 6/50
+=== PAGE 7 ===
+Sess.No. CO COI TopicBook No[CH
+No][Page No]Teaching-
+Learning
+MethodsEvaluationComponents
+3 Algorithmic Paradigms [P.No.5-18],
+TB2 [Ch.1]
+[P.No.1-20]Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+3 CO1COI-
+4Computational Complexity
+and Challenges in Lar ge-Scale
+Data ProcessingTB1 [Ch.3]
+[P.No.43-67]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+4 CO1COI-
+5Algorithm Selection Strategies
+and Complexity-Based
+EvaluationTB1 [Ch.3]
+[P.No.43-67],
+RB1 [Ch.2]
+[P.No.25-42]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+5 CO2 COI-
+2String Matching Problem and
+Naïve Pattern Matching
+AlgorithmTB1 [Ch.32]
+[P.No.985-990]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges7/20/26, 11:23 AM about:blank
+about:blank 7/50
+=== PAGE 8 ===
+Sess.No. CO COI TopicBook No[CH
+No][Page No]Teaching-
+Learning
+MethodsEvaluationComponents
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+6 CO2COI-
+2Knuth-Morris-Pratt Algorithm
+and Failure FunctionTB1 [Ch.32]
+[P.No.991-
+1000]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+7 CO2COI-
+3Z-Function, Rabin-Karp
+Algorithm and Hashing
+TechniquesTB1 [Ch.32]
+[P.No.1000-
+1008]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+8 CO2 COI-
+3Multi-Pattern Matching,
+Suffix Arrays and LCP  ArrayTB2 [Ch. 13]
+[P.No.640-675]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs7/20/26, 11:23 AM about:blank
+about:blank 8/50
+=== PAGE 9 ===
+Sess.No. CO COI TopicBook No[CH
+No][Page No]Teaching-
+Learning
+MethodsEvaluationComponents
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+9 CO3COI-
+2Dynamic Programming
+Framework, Overlapping
+Subproblems and Optimal
+SubstructureTB1 [Ch.15]
+[P.No.359-377]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+10 CO3COI-
+2Edit Distance, Wagner -Fischer
+Algorithm and VariantsTB2 [Ch. 6]
+[P.No.245-270]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+11 CO3 COI-
+3Sequence Alignment:
+Needleman-W unsch and
+Smith-W aterman AlgorithmsTB2 [Ch. 7]
+[P.No.270-295]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous7/20/26, 11:23 AM about:blank
+about:blank 9/50
+=== PAGE 10 ===
+Sess.No. CO COI TopicBook No[CH
+No][Page No]Teaching-
+Learning
+MethodsEvaluationComponents
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+12 CO3COI-
+3Interval DP , Bitmask DP  and
+Travelling Salesperson
+ProblemTB1 [Ch.15]
+[P.No.378-405]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,Mid-T erm
+Examination
+(Descriptive),MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+13 CO4COI-
+2Flow Networks, Residual
+Graphs and Capacity
+ConstraintsTB1 [Ch.26]
+[P.No.701-718]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+14 CO4COI-
+2Ford-Fulkerson Method and
+Maximum Flow ProblemsTB1 [Ch.26]
+[P.No.719-730]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+15 CO4 COI- Edmonds-Karp Algorithm and TB3 [Ch.3] Chalk,L TC,T alkActive Learning7/20/26, 11:23 AM about:blank
+about:blank 10/50
+=== PAGE 11 ===
+Sess.No. CO COI TopicBook No[CH
+No][Page No]Teaching-
+Learning
+MethodsEvaluationComponents
+3 Max-Flow Min-Cut Theorem [P.No.95-130] Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+16 CO4COI-
+3Bipartite Matching,
+Assignment Problems and
+Flow ApplicationsTB1 [Ch.26]
+[P.No.730-
+748], TB3
+[Ch.12]
+[P.No.450-490]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+17 CO5COI-
+2Decision Problems,
+Optimization Problems and
+Complexity Classes P , NP, co-
+NPTB1 [Ch.34]
+[P.No.1043-
+1058]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+18 CO5 COI-
+3NP-Completeness, SA T and
+Polynomial-T ime ReductionsTB1 [Ch.34]
+[P.No.1058-
+1078]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous7/20/26, 11:23 AM about:blank
+about:blank 11/50
+=== PAGE 12 ===
+Sess.No. CO COI TopicBook No[CH
+No][Page No]Teaching-
+Learning
+MethodsEvaluationComponents
+Evaluation,T erm End
+Project Defence &
+Demonstration
+19 CO5COI-
+3NP-Hard Problems, Clique,
+Independent Set, Vertex Cover
+and KnapsackTB1 [Ch.34]
+[P.No.1078-
+1083]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+20 CO5COI-
+4Approximation Algorithms,
+PTAS, FPT AS, APX and
+Parameterized ComplexityTB4 [Ch.1-2]
+[P.No.1-55]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+21 CO6COI-
+2Randomized Algorithms, Las
+Vegas and Monte Carlo
+TechniquesTB1 [Ch.5]
+[P.No.1 14-
+128], TB5
+[Ch.1][P .No.1-
+20]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+22 CO6 COI-
+2Randomized QuickSort,
+Miller -Rabin Primality Testing
+and HashingTB5 [Ch.4]
+[P.No.90-130]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs7/20/26, 11:23 AM about:blank
+about:blank 12/50
+=== PAGE 13 ===
+Sess.No. CO COI TopicBook No[CH
+No][Page No]Teaching-
+Learning
+MethodsEvaluationComponents
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+23 CO6COI-
+3Reservoir Sampling, Work-
+Span Analysis and Brent's
+TheoremTB1 [Ch.27]
+[P.No.773-
+790], TB5
+[Ch.5]
+[P.No.131-150]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+24 CO6COI-
+3Parallel Reduction, Prefix
+Sum, Parallel Sorting and
+Performance AnalysisTB1 [Ch.27]
+[P.No.790-828]Chalk,L TC,T alkActive Learning
+Engagement (In-
+Class),End Semester
+Exam,Global Challenges
+- Participation,MOOCs
+Evaluation (Certificate +
+Test),Practical
+Continuous
+Evaluation,Project
+Continuous
+Evaluation,T erm End
+Project Defence &
+Demonstration
+Lectur e Session wise Teaching – Learning Plan
+SESSION NUMBER :  1
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Introduce the DSA-III syllabus, course
+outcomes, assessment methodology , and TextHack as the
+anchor project used throughout the course.1 TalkJust in-time
+teaching7/20/26, 11:23 AM about:blank
+about:blank 13/50
+=== PAGE 14 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+20Discuss TextHack as a Text Analytics and Sequence Search
+Engine. Explain pattern search, fuzzy matching, document
+similarity analysis, citation-flow analysis, scheduling
+demonstrations, and lar ge-prime testing functionalities.2 ChalkCase Study
+Based
+Learning
+20Evaluate how dif ferent categories of user queries require
+String Algorithms, Dynamic Programming, Network Flow
+Algorithms, Approximation Algorithms, and Randomized
+Algorithms for ef ficient processing.5 ChalkProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  2
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap TextHack functionalities and algorithm
+families discussed in the previous session.2 TalkJust in-time
+teaching
+20Introduce String Algorithms, Dynamic Programming,
+Network Flow , Approximation Algorithms, and Randomized
+Algorithms. Explain their roles within TextHack.2 ChalkCase Study
+Based
+Learning
+20Analyze the limitations of linear search, conventional graph
+traversal, and basic optimization approaches. Evaluate
+situations where advanced algorithms become necessary for
+handling lar ge-scale datasets and computationally intensive
+problems.5 ChalkProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  3
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap the major functionalities of TextHack
+and the algorithmic paradigms associated with dif ferent
+query categories.2 TalkJust in-time
+teaching
+20Describe pattern search, fuzzy matching, document similarity
+analysis, citation-flow analysis, scheduling demonstrations,
+and primality testing as computational problems. Explain the
+characteristics of each problem category .2 ChalkCase Study
+Based
+Learning
+20Analyze how String Algorithms, Dynamic Programming,
+Network Flow Algorithms, Approximation Algorithms, and
+Randomized Algorithms address dif ferent computational
+requirements. Evaluate the suitability of various algorithmic
+paradigms for representative TextHack functionalities.5 LTCProblem-Based
+Learning7/20/26, 11:23 AM about:blank
+about:blank 14/50
+=== PAGE 15 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  4
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap algorithmic paradigms and their
+association with TextHack functionalities.2 TalkJust in-time
+teaching
+20Introduce asymptotic complexity analysis and discuss how
+execution time and memory requirements influence
+algorithm selection. Explain the significance of scalability in
+large datasets.2 ChalkCase Study
+Based
+Learning
+20Analyze the computational requirements of search, similarity
+analysis, citation analysis, scheduling, and primality testing
+functionalities. Evaluate alternative algorithmic approaches
+using asymptotic complexity considerations.5 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  5
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap TextHack search requirements and
+discuss the role of ef ficient search operations in lar ge text
+repositories.2 TalkJust in-time
+teaching
+20Describe the string matching problem. Explain pattern P , text
+T, and the Naïve Pattern Matching algorithm. Discuss the
+O(nm) time complexity and execution process.2 ChalkCase Study
+Based
+Learning
+20Apply Naïve Pattern Matching to identify keyword
+occurrences within article datasets. Analyze search operations
+performed during pattern matching and identify inef ficiencies
+in repeated comparisons.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  6
+No Session Outcomes are mapped7/20/26, 11:23 AM about:blank
+about:blank 15/50
+=== PAGE 16 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap the limitations of Naïve Pattern
+Matching discussed in the previous session.2 TalkJust in-time
+teaching
+20Discuss the Knuth-Morris-Pratt (KMP) algorithm. Explain
+the concept of preprocessing patterns and the role of the
+Failure Function (LPS Array).2 ChalkCase Study
+Based
+Learning
+20Apply KMP  to perform ef ficient pattern searching and
+compare its operation with Naïve Pattern Matching using
+representative search examples.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  7
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap KMP  algorithm and discuss alternative
+approaches for pattern searching.2 TalkJust in-time
+teaching
+20Introduce the Z-Function algorithm and explain the
+computation of Z-values for ef ficient pattern matching.
+Discuss its role in string processing.2 ChalkCase Study
+Based
+Learning
+20Introduce Rabin-Karp algorithm. Explain Polynomial Rolling
+Hash, Modular Arithmetic, and Double Hashing concepts
+used to reduce collision probability . Apply Rabin-Karp to
+pattern-search examples.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  8
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap advanced pattern-search techniques
+discussed in the previous session.2 TalkJust in-time
+teaching
+20Describe Aho-Corasick algorithm and Trie with Failure
+Links. Explain how multiple patterns can be searched
+simultaneously within lar ge textual datasets.2 ChalkCase Study
+Based
+Learning
+20Introduce Suf fix Arrays, Longest Common Prefix (LCP)
+Arrays, and Kasai Algorithm. Explain their role in document
+similarity analysis and longest common substring
+identification.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  97/20/26, 11:23 AM about:blank
+about:blank 16/50
+=== PAGE 17 ===
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap the limitations of exact pattern
+matching and discuss the need for fuzzy matching in
+TextHack.2 TalkJust in-time
+teaching
+20Discuss the Dynamic Programming framework. Explain
+overlapping subproblems, optimal substructure,
+memoization, and tabulation approaches.2 ChalkCase Study
+Based
+Learning
+20Introduce Edit Distance and its variants including
+Levenshtein Distance, Damerau-Levenshtein Distance, and
+Weighted Edit Distance. Apply Wagner -Fischer Algorithm to
+compute edit distance between representative text queries.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  10
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap edit-distance computation and fuzzy
+search requirements within TextHack.2 TalkJust in-time
+teaching
+20Introduce sequence alignment problems. Explain Needleman-
+Wunsch algorithm for global alignment and the role of
+scoring mechanisms.2 ChalkCase Study
+Based
+Learning
+20Introduce Smith-W aterman algorithm for local alignment and
+explain gap penalties. Apply sequence-alignment techniques
+to representative genome sequences.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  11
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap Dynamic Programming applications in
+fuzzy search and sequence alignment.2 TalkJust in-time
+teaching
+20Introduce Interval Dynamic Programming. Explain Matrix
+Chain Multiplication and Optimal Binary Search Tree
+problems. Discuss state representation and recurrence
+relations.2 ChalkCase Study
+Based
+Learning
+20Apply Interval Dynamic Programming techniques to
+determine optimal multiplication orders and optimal search-
+tree construction.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions7/20/26, 11:23 AM about:blank
+about:blank 17/50
+=== PAGE 18 ===
+SESSION NUMBER :  12
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap Interval Dynamic Programming
+concepts discussed in the previous session.2 TalkJust in-time
+teaching
+20Discuss Bitmask Dynamic Programming. Explain Travelling
+Salesperson Problem (TSP), Hamiltonian Path Detection, and
+state-compression concepts.2 ChalkCase Study
+Based
+Learning
+20Introduce Dynamic Programming on Trees, Tree Rerooting
+Technique, DP  on Subsets, and Sum-over -Subsets (SOS)
+Dynamic Programming. Discuss applications and limitations
+of Dynamic Programming.3 ChalkProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  13
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap optimization problems addressed using
+Dynamic Programming and discuss the need for flow-based
+models in network analysis.2 TalkJust in-time
+teaching
+20Describe flow networks, source and sink concepts, capacity
+constraints, flow conservation, and feasible flow . Explain
+how citation relationships in TextHack can be represented as
+a flow network.2 ChalkCase Study
+Based
+Learning
+20Apply flow-network concepts to representative citation
+graphs and identify source, sink, capacities, and possible flow
+paths.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  14
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap flow-network components and flow
+conservation principles.2 TalkJust in-time
+teaching
+20Introduce residual graphs, augmenting paths, and Ford-
+Fulkerson algorithm. Explain how residual capacities support
+iterative flow improvement.2 ChalkCase Study
+Based
+Learning
+20Apply Ford-Fulkerson algorithm to representative flow
+networks and compute maximum flow using augmenting
+paths.3 LTCProblem-Based
+Learning7/20/26, 11:23 AM about:blank
+about:blank 18/50
+=== PAGE 19 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  15
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap Ford-Fulkerson algorithm and
+maximum-flow computation process.2 TalkJust in-time
+teaching
+20Introduce Edmonds-Karp algorithm and explain the use of
+Breadth-First Search for augmenting-path selection. Discuss
+Dinic’ s algorithm, level graphs, and blocking flows.2 ChalkCase Study
+Based
+Learning
+20Introduce Maximum Flow–Minimum Cut theorem and apply
+min-cut concepts to representative network partitioning
+problems.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  16
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap max-flow min-cut concepts and
+network partitioning problems.2 TalkJust in-time
+teaching
+20Discuss Bipartite Matching, König’ s Theorem, Assignment
+Problems, and Minimum Cost Maximum Flow concepts.
+Explain flow-based problem transformations.2 ChalkCase Study
+Based
+Learning
+20Apply network-flow techniques to scheduling applications,
+project-selection problems, and resource-allocation scenarios.
+Discuss image segmentation using graph cuts as a flow-based
+application.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  17
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap optimization and resource-allocation
+problems addressed using Network Flow algorithms.2 TalkJust in-time
+teaching
+20 Describe decision problems and optimization problems.
+Explain polynomial-time algorithms and the significance of2 Chalk Case Study
+Based7/20/26, 11:23 AM about:blank
+about:blank 19/50
+=== PAGE 20 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+computational complexity in algorithm analysis. Learning
+20Analyze complexity classes P , NP, and co-NP  using
+representative computational problems. Examine the role of
+verification and certificates in NP  problems.4 LTCCase Study
+Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  18
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap complexity classes and problem
+classifications discussed in the previous session.2 TalkJust in-time
+teaching
+20Introduce NP-Complete and NP-Hard problems. Explain
+Cook-Levin Theorem and Boolean Satisfiability (SA T) as the
+first NP-Complete problem.2 ChalkCase Study
+Based
+Learning
+20Analyze polynomial-time reductions involving 3-SA T,
+Clique, Independent Set, Vertex Cover , Subset Sum,
+Knapsack, Hamiltonian Cycle, and Travelling Salesperson
+Problem.4 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  19
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap limitations of exact algorithms for NP-
+Hard problems.2 TalkJust in-time
+teaching
+20Discuss about approximation algorithms, approximation
+ratio, and performance guarantees. Explain the need for
+approximation techniques in lar ge-scale optimization
+problems.2 ChalkCase Study
+Based
+Learning
+20Analyze Vertex Cover 2-Approximation using maximal
+matching and compare approximate solutions with optimal
+solutions.4 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  20
+No Session Outcomes are mapped7/20/26, 11:23 AM about:blank
+about:blank 20/50
+=== PAGE 21 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap approximation algorithms and solution-
+quality measures.2 TalkJust in-time
+teaching
+20Introduce PT AS, FPT AS, and APX classes. Explain
+approximation guarantees and the trade-of f between solution
+quality and computational ef fort.2 ChalkCase Study
+Based
+Learning
+20Analyze optimization problems where approximation
+approaches are ef fective and examine situations where
+efficient approximation guarantees are dif ficult to obtain.
+Introduce Parameterized Complexity and Kernelization
+concepts.4 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  21
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap optimization challenges encountered in
+NP-Hard problems and discuss the need for alternative
+algorithmic approaches.2 TalkJust in-time
+teaching
+20Discuss about randomized algorithms and explain the
+differences between Las Vegas and Monte Carlo algorithms.
+Discuss correctness guarantees and probabilistic behavior .2 ChalkCase Study
+Based
+Learning
+20Apply randomized techniques to representative
+computational problems and examine Randomized QuickSort
+with expected-time analysis.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  22
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap randomized algorithms and expected-
+time analysis concepts.2 TalkJust in-time
+teaching
+20Describe Miller -Rabin Primality Testing. Explain witness
+construction, probabilistic correctness, and the Carmichael-
+number challenge.2 ChalkCase Study
+Based
+Learning
+20Introduce Universal Hashing, Perfect Hashing, and
+randomized hashing techniques. Discuss the role of
+probabilistic hashing in ef ficient data retrieval.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions7/20/26, 11:23 AM about:blank
+about:blank 21/50
+=== PAGE 22 ===
+SESSION NUMBER :  23
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap randomized algorithms and discuss the
+need for performance improvement through parallel
+execution.2 TalkJust in-time
+teaching
+20Discuss about work (T₁), span (T∞), speedup, scalability , and
+Brent’ s Theorem. Explain the theoretical foundations of
+parallel algorithms.2 ChalkCase Study
+Based
+Learning
+20Apply work-span analysis to representative computational
+tasks and discuss limitations on achievable speedup.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  24
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+5Attendance & Recap work-span analysis and performance
+considerations in parallel computing.2 TalkJust in-time
+teaching
+20Describe Parallel Reduction, Parallel Prefix-Sum (Scan)
+Algorithms, and Parallel Sorting Techniques. Explain data-
+parallel and task-parallel execution models.2 ChalkCase Study
+Based
+Learning
+20Apply parallel-processing concepts to representative data-
+analysis problems and discuss performance and scalability
+considerations.3 LTCProblem-Based
+Learning
+5 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+Tutorial Course DELIVER Y Plan:
+NO Delivery Plan Exists
+Tutorial Session wise Teaching – Learning Plan
+No Session Plans Exists
+Practical Course DELIVER Y Plan:
+Tutorial
+Session
+noTopics CO-Mapping
+1 Corpus Loading and Article Repository Creation for TextHack CO17/20/26, 11:23 AM about:blank
+about:blank 22/50
+=== PAGE 23 ===
+Tutorial
+Session
+noTopics CO-Mapping
+2 Query Processing and Article Retrieval Framework Implementation CO1
+3Implementation of Naïve Pattern Matching and Knuth-Morris-Pratt (KMP)
+Algorithms for Keyword SearchCO2
+4Implementation of Rabin-Karp Algorithm and Document Similarity Analysis
+using Suf fix-Based ProcessingCO2
+5Implementation of Edit Distance Computation and Fuzzy Search using Wagner -
+Fischer AlgorithmCO3
+6Implementation of Sequence Alignment and Bitmask Dynamic Programming for
+Optimization ProblemsCO3
+7Implementation of Flow Networks and Ford-Fulkerson Algorithm for Citation
+Flow AnalysisCO4
+8Implementation of Edmonds-Karp Algorithm and Bipartite Matching
+ApplicationsCO4
+9 Implementation of Exact Solutions for NP-Hard CO5
+10 Implementation of Vertex Cover 2-Approximation and Scheduling Demonstration CO5
+11Implementation of Miller -Rabin Primality Testing and Randomized Hashing
+TechniquesCO6
+12Implementation of Parallel Prefix-Sum and Performance Benchmarking of
+Sequential and Parallel ExecutionCO6
+Practical Session wise Teaching – Learning Plan
+SESSION NUMBER :  1
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Introduce the TextHack project structure and
+datasets used in the project.1 TalkJust in-time
+teaching
+25Introduce file handling mechanisms required for reading
+article datasets and or ganizing textual information.2 ChalkProblem-Based
+Learning
+25Analyze the workflow involved in loading, storing, and
+accessing article data for future search and analytics
+operations.4 ChalkProblem-Based
+Learning7/20/26, 11:23 AM about:blank
+about:blank 23/50
+=== PAGE 24 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+30Implement a corpus loading module capable of reading
+article files and displaying article information through
+TextHack.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+SESSION NUMBER :  2
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap the corpus loading module developed in
+the previous practical session and discuss the need for
+organizing article information ef ficiently .2 TalkJust in-time
+teaching
+25Explain query-processing requirements within TextHack.
+Explain how article identifiers, titles, contents, and references
+can be or ganized to support future algorithmic operations.2 ChalkProblem-Based
+Learning
+25Assess dif ferent approaches for storing and accessing article
+information. Investigate how data or ganization influences
+future search and analytics performance.4 ChalkProblem-Based
+Learning
+30Implement article storage and query-processing components
+capable of retrieving article information based on user
+requests without relying on advanced library collections.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+SESSION NUMBER :  3
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap pattern-search requirements in
+TextHack and discuss the need for ef ficient keyword
+retrieval.2 TalkJust in-time
+teaching
+25Describe the implementation of Naïve Pattern Matching and
+KMP  algorithms. Explain pattern comparison and failure
+function generation.3 ChalkProblem-Based
+Learning
+25Apply Naïve Pattern Matching and KMP  to representative
+article datasets and compare the number of comparisons
+performed by each algorithm.3 ChalkProblem-Based
+Learning
+30Implement keyword-based search functionality using KMP
+and display matching article locations within TextHack.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+SESSION NUMBER :  47/20/26, 11:23 AM about:blank
+about:blank 24/50
+=== PAGE 25 ===
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap KMP-based search functionality and
+discuss the need for advanced search and similarity
+operations.2 TalkJust in-time
+teaching
+25Explain the implementation of Rabin-Karp searching using
+Polynomial Rolling Hash and Double Hashing techniques.3 ChalkProblem-Based
+Learning
+25Apply Suf fix Arrays and LCP  computation concepts to
+identify common textual segments among articles.3 ChalkProblem-Based
+Learning
+30Implement Rabin-Karp search and document similarity
+analysis within TextHack and display similarity results for
+selected article pairs.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+SESSION NUMBER :  5
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap Dynamic Programming concepts and
+discuss fuzzy-search requirements in TextHack.2 TalkJust in-time
+teaching
+25Describe the implementation of Edit Distance using Wagner -
+Fischer Algorithm and explain matrix construction
+procedures.3 ChalkProblem-Based
+Learning
+25Compare Edit Distance computation and sequence-alignment
+techniques to representative query and genome datasets.3 ChalkProblem-Based
+Learning
+30Implement fuzzy-search functionality capable of suggesting
+corrections for misspelled user queries within TextHack.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+SESSION NUMBER :  6
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap Interval Dynamic Programming and
+state-compression concepts.2 TalkJust in-time
+teaching
+25Explain the implementation of Matrix Chain Multiplication
+and Bitmask Dynamic Programming techniques.3 ChalkProblem-Based
+Learning
+25Assess Dynamic Programming approaches to Travelling
+Salesperson and Hamiltonian Path problems using
+representative datasets.3 ChalkProblem-Based
+Learning
+30 Implement Bitmask-DP-based routing optimization and
+demonstrate shortest-route generation for representative3 LTC Lab Taken to
+Class7/20/26, 11:23 AM about:blank
+about:blank 25/50
+=== PAGE 26 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+TextHack scenarios.
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+SESSION NUMBER :  7
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap flow-network concepts and discuss
+information-flow requirements in citation networks.2 TalkJust in-time
+teaching
+25Introduce the implementation of flow networks, residual
+graphs, and augmenting-path identification.3 ChalkProblem-Based
+Learning
+25Apply Ford-Fulkerson algorithm to representative citation
+graphs and compute maximum flow values.3 ChalkProblem-Based
+Learning
+30Implement maximum-flow computation for a citation
+network and display flow distribution among connected
+articles within TextHack.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+SESSION NUMBER :  8
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap maximum-flow algorithms and discuss
+assignment requirements within TextHack.2 TalkJust in-time
+teaching
+25Discuss the implementation of Edmonds-Karp algorithm and
+bipartite matching using flow-network transformations.3 ChalkProblem-Based
+Learning
+25Apply matching and assignment techniques to representative
+resource-allocation scenarios.3 ChalkProblem-Based
+Learning
+30Implement bipartite matching functionality and generate
+assignment results for representative TextHack datasets.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+SESSION NUMBER :  9
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap NP-Complete and NP-Hard problems
+and discuss their significance in real-world applications.2 TalkJust in-time
+teaching7/20/26, 11:23 AM about:blank
+about:blank 26/50
+=== PAGE 27 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+25Describe representative NP-Hard problems including
+Knapsack, Vertex Cover , and Travelling Salesperson
+Problem. Explain exhaustive-search approaches for obtaining
+exact solutions.3 ChalkProblem-Based
+Learning
+25Analyze the growth of computational requirements as
+problem size increases and investigate the limitations of
+exact approaches.4 ChalkProblem-Based
+Learning
+30Implement a small-scale exact solution for an NP-Hard
+problem and compare execution behavior for dif ferent input
+sizes.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+SESSION NUMBER :  10
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap approximation concepts and discuss
+their role in solving lar ge-scale optimization problems.2 TalkJust in-time
+teaching
+25Introduce the implementation of Vertex Cover 2-
+Approximation using maximal matching.3 ChalkProblem-Based
+Learning
+25Analyze approximation quality by comparing approximate
+solutions with exact solutions for representative graph
+instances.4 ChalkProblem-Based
+Learning
+30Implement approximation-based scheduling analysis and
+evaluate solution quality using approximation ratios.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+SESSION NUMBER :  11
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap randomized algorithms and discuss
+large-prime verification requirements in TextHack.2 TalkJust in-time
+teaching
+25Discuss the implementation of Miller -Rabin Primality
+Testing and explain witness generation procedures.3 ChalkProblem-Based
+Learning
+25Apply Miller -Rabin testing to representative lar ge integers
+and compare probabilistic verification with deterministic
+checking.3 ChalkProblem-Based
+Learning
+30Implement lar ge-prime validation functionality within
+TextHack and display primality-testing results for selected
+inputs.3 LTCLab Taken to
+Class7/20/26, 11:23 AM about:blank
+about:blank 27/50
+=== PAGE 28 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+SESSION NUMBER :  12
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap parallel-computing concepts and
+discuss computational workloads within TextHack.2 TalkJust in-time
+teaching
+25Introduce the implementation of Parallel Prefix-Sum using
+Java parallel-execution mechanisms.3 ChalkProblem-Based
+Learning
+25Apply parallel computation to representative datasets and
+compare execution behavior with sequential approaches.3 ChalkProblem-Based
+Learning
+30Implement Parallel Prefix-Sum functionality and generate
+performance-comparison reports within TextHack.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 LTCQuiz/T est
+Questions
+Skilling Course DELIVER Y Plan:
+Skilling
+session
+noTopics/Experiments CO-Mapping
+1 Exploring Text Analytics Systems and Query Categories in TextHack CO1
+2 Mapping Computational Problems to Algorithmic Paradigms CO1
+3 Analysis of TextHack Workflow and Interaction among Processing Components CO1
+4 Evaluating Search-Processing Requirements and Algorithm Selection Strategies CO1
+5 Applying Naïve Pattern Matching and KMP  Algorithms for Text Search CO2
+6 Investigation of Search Requirements for Lar ge Text Repositories CO2
+7 Applying Suf fix Arrays and LCP  Arrays for Document Similarity Analysis CO2
+8Evaluation of Exact Pattern Matching Techniques and Preparation for Fuzzy
+SearchCO2
+9 Applying Edit Distance Techniques for Query Correction and Fuzzy Search CO3
+10 Applying Sequence Alignment Techniques for Genome Data Analysis CO37/20/26, 11:23 AM about:blank
+about:blank 28/50
+=== PAGE 29 ===
+Skilling
+session
+noTopics/Experiments CO-Mapping
+11 Applying Bitmask Dynamic Programming for Route Optimization Problems CO3
+12 Investigating Applications and Limitations of Dynamic Programming CO3
+13 Applying Flow-Network Concepts for Citation Flow Analysis CO4
+14 Applying Ford-Fulkerson Algorithm for Maximum Information Flow Analysis CO4
+15 Applying Min-Cut Techniques for Community Detection in Citation Networks CO4
+16 Applying Matching and Assignment Techniques using Flow-Based Models CO4
+17 Analysis of Scheduling Problems and Computational Complexity CO5
+18 Analysis of Polynomial-T ime Reductions among NP-Complete Problems CO5
+19Analysis of Approximation Techniques for Scheduling and Optimization
+ProblemsCO5
+20 Evaluation of Approximation Algorithms for NP-Hard Optimization Problems CO5
+21 Applying Miller -Rabin Primality Testing for Lar ge Number Validation CO6
+22 Applying Randomized Hashing and Reservoir Sampling Techniques CO6
+23 Applying Work-Span Analysis and Scalability Evaluation for Parallel Algorithms CO6
+24Evaluation of Complete TextHack Performance using Randomized and Parallel
+TechniquesCO6
+Skilling Session wise Teaching – Learning Plan
+SESSION NUMBER :  1
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Introduce TextHack and identify the major
+computational services required for processing lar ge
+collections of Wikipedia articles and genome sequences.2 TalkJust in-time
+teaching
+30Describe the major functionalities supported by TextHack,
+including pattern search, fuzzy matching, document
+similarity analysis, citation-flow analysis, scheduling
+demonstrations, and primality testing.2 ChalkCase Study
+Based
+Learning7/20/26, 11:23 AM about:blank
+about:blank 29/50
+=== PAGE 30 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+20Classify TextHack functionalities according to the
+algorithmic paradigms required to solve them and relate each
+functionality to a corresponding computational challenge.3 LTCProblem-Based
+Learning
+30Evaluate the necessity of advanced algorithms for supporting
+large-scale search and analytics operations and justify their
+significance in improving system performance.5 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  2
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap the major functionalities of TextHack
+and identify the computational requirements associated with
+each operation.2 TalkJust in-time
+teaching
+30Explain the characteristics of String Algorithms, Dynamic
+Programming, Network Flow , Approximation Algorithms,
+Randomized Algorithms, and Parallel Algorithms.2 ChalkCase Study
+Based
+Learning
+20Differentiate the algorithmic paradigms based on their
+problem-solving capabilities and determine their suitability
+for various TextHack functionalities.4 LTCProblem-Based
+Learning
+30Justify the selection of appropriate algorithmic approaches
+for pattern search, similarity analysis, citation analytics,
+scheduling, and primality testing based on ef ficiency and
+scalability considerations.5 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  3
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap algorithmic paradigms and identify their
+contributions to solving advanced computational problems in
+TextHack.2 TalkJust in-time
+teaching
+30Interpret the growth of computational requirements as the
+size of article repositories, genome datasets, and citation
+networks increases.2 ChalkCase Study
+Based
+Learning
+20Analyze the influence of time complexity and space
+complexity on search performance, similarity analysis, and
+large-scale information processing tasks.4 LTCProblem-Based
+Learning
+30 Assess alternative algorithmic approaches for handling
+increasing data volumes and validate their suitability for5 LTC Lab Taken to
+Class7/20/26, 11:23 AM about:blank
+about:blank 30/50
+=== PAGE 31 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+maintaining ef ficient TextHack operations.
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  4
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap computational complexity
+considerations and identify factors that influence algorithm
+selection.2 TalkJust in-time
+teaching
+30Outline factors influencing algorithm selection, including
+input size, execution time, memory consumption, scalability ,
+and implementation constraints.2 ChalkCase Study
+Based
+Learning
+20Compare alternative algorithmic approaches for
+representative TextHack operations and determine their
+strengths and limitations.4 LTCProblem-Based
+Learning
+30Evaluate multiple solution strategies and recommend the
+most suitable algorithms for supporting ef ficient pattern
+search, similarity analysis, citation-flow analysis, scheduling,
+and primality testing within TextHack.5 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  5
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap pattern-search requirements in
+TextHack and identify the limitations of character -by-
+character searching for lar ge text repositories.2 TalkJust in-time
+teaching
+30Explain the string-matching problem and describe the
+working principles of the Naïve Pattern Matching and Knuth-
+Morris-Pratt (KMP) algorithms.2 ChalkCase Study
+Based
+Learning
+20Demonstrate the construction of the failure function and
+illustrate how KMP  avoids redundant character comparisons
+during pattern matching.3 LTCProblem-Based
+Learning
+30Employ KMP-based searching to retrieve relevant articles
+from the TextHack corpus and generate search results for
+user queries.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  67/20/26, 11:23 AM about:blank
+about:blank 31/50
+=== PAGE 32 ===
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap KMP-based searching and identify
+situations where hashing techniques can improve search
+performance.2 TalkJust in-time
+teaching
+30Explain the principles of polynomial rolling hash and
+describe the working mechanism of the Rabin-Karp
+algorithm.2 ChalkCase Study
+Based
+Learning
+20Illustrate the process of hash-value computation, collision
+handling, and double hashing for reliable pattern matching.3 LTCProblem-Based
+Learning
+30Utilize Rabin-Karp searching to process multiple search
+queries and compare its behavior with KMP  for
+representative TextHack datasets.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  7
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap pattern-matching techniques and
+identify the need for document similarity analysis in
+TextHack.2 TalkJust in-time
+teaching
+30Describe suf fix arrays and Longest Common Prefix (LCP)
+arrays and explain their role in identifying similarities among
+documents.2 ChalkCase Study
+Based
+Learning
+20Demonstrate the construction of suf fix-array and LCP
+representations for sample documents and interpret the
+generated structures.3 LTCProblem-Based
+Learning
+30Construct suf fix-based similarity models and generate
+similarity scores between selected Wikipedia articles in
+TextHack.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  8
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap KMP , Rabin-Karp, suf fix arrays, and
+LCP arrays and identify their individual contributions to
+TextHack.2 TalkJust in-time
+teaching
+30Explain multi-pattern matching requirements and outline the
+role of Aho-Corasick structures in processing multiple search
+patterns simultaneously .2 ChalkCase Study
+Based
+Learning7/20/26, 11:23 AM about:blank
+about:blank 32/50
+=== PAGE 33 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+20Differentiate pattern-search techniques based on
+preprocessing requirements, search ef ficiency , and suitability
+for lar ge datasets.3 LTCProblem-Based
+Learning
+30Integrate pattern-matching and similarity-analysis
+functionalities to support comprehensive text-search
+operations within TextHack.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  9
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap overlapping subproblems and optimal
+substructure concepts and identify their significance in
+Dynamic Programming solutions.2 TalkJust in-time
+teaching
+30Explain Edit Distance concepts and describe Levenshtein,
+Damerau-Levenshtein, and Weighted Edit Distance measures
+used in text processing applications.2 ChalkCase Study
+Based
+Learning
+20Illustrate the Wagner -Fischer algorithm and demonstrate the
+construction of Dynamic Programming tables for computing
+edit distances between strings.3 LTCProblem-Based
+Learning
+30Employ Edit Distance techniques to perform fuzzy matching
+and spelling-correction operations for user queries within
+TextHack.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  10
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap sequence-alignment concepts discussed
+in the previous session.2 TalkJust in-time
+teaching
+30Examine representative genome sequences and discuss
+biological sequence-matching requirements.2 ChalkCase Study
+Based
+Learning
+20Apply Needleman-W unsch and Smith-W aterman algorithms
+to identify sequence similarities and alignment scores.3 LTCProblem-Based
+Learning
+30Integrate sequence-alignment functionality into TextHack
+and validate similarity scores using representative genome
+datasets.3 LTCLab Taken to
+Class7/20/26, 11:23 AM about:blank
+about:blank 33/50
+=== PAGE 34 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  11
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap sequence-alignment problems and
+identify optimization challenges that require advanced
+Dynamic Programming techniques.2 TalkJust in-time
+teaching
+30Describe Interval Dynamic Programming and Bitmask
+Dynamic Programming techniques used for solving
+optimization problems.2 ChalkCase Study
+Based
+Learning
+20Demonstrate state-space representation and illustrate the role
+of Bitmask Dynamic Programming in solving Travelling
+Salesperson and Hamiltonian Path problems.3 LTCProblem-Based
+Learning
+30Construct Dynamic Programming models for route
+optimization scenarios and generate optimal solutions for
+representative TextHack scheduling and routing tasks.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  12
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap Edit Distance, Sequence Alignment,
+Interval DP , and Bitmask DP  techniques and identify their
+application areas.2 TalkJust in-time
+teaching
+30Summarize the strengths and limitations of various Dynamic
+Programming approaches used for text analytics, genome
+analysis, and optimization tasks.2 ChalkCase Study
+Based
+Learning
+20Differentiate Dynamic Programming techniques based on
+state representation, computational complexity , and problem-
+solving capability .3 LTCProblem-Based
+Learning
+30Integrate Dynamic Programming-based functionalities to
+support fuzzy matching, sequence analysis, and optimization
+workflows within TextHack.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  13
+No Session Outcomes are mapped7/20/26, 11:23 AM about:blank
+about:blank 34/50
+=== PAGE 35 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap graph-based representations and
+identify the need for modeling information movement in
+large citation networks.2 TalkJust in-time
+teaching
+30Explain the components of a flow network including source,
+sink, capacity , flow conservation, and residual capacity .2 ChalkCase Study
+Based
+Learning
+20Illustrate the construction of flow-network models for
+citation relationships among articles and demonstrate flow
+movement across connected nodes.3 LTCProblem-Based
+Learning
+30Employ flow-network representations to model citation-flow
+analysis and generate network structures for TextHack article
+repositories.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  14
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap flow-network construction and identify
+the significance of maximum-flow computation in network
+analysis.2 TalkJust in-time
+teaching
+30Describe the Ford-Fulkerson method and explain the role of
+augmenting paths in increasing network flow .2 ChalkCase Study
+Based
+Learning
+20Demonstrate the identification of augmenting paths and
+illustrate flow updates within residual networks.3 LTCProblem-Based
+Learning
+30Utilize Ford-Fulkerson-based flow computation to determine
+maximum information-transfer capacity between selected
+article groups in TextHack.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  15
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap augmenting-path concepts and identify
+limitations of basic maximum-flow computation approaches.2 TalkJust in-time
+teaching
+30Explain the Edmonds-Karp algorithm and describe how
+Breadth-First Search improves augmenting-path selection.2 ChalkCase Study
+Based
+Learning7/20/26, 11:23 AM about:blank
+about:blank 35/50
+=== PAGE 36 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+20Demonstrate residual-network updates and illustrate the
+relationship between maximum flow and minimum cut.3 LTCProblem-Based
+Learning
+30Construct Edmonds-Karp-based solutions for citation-flow
+analysis and generate community-separation results using
+minimum-cut concepts within TextHack.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  16
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap matching and assignment concepts
+discussed in previous sessions.2 TalkJust in-time
+teaching
+30Examine resource-allocation and assignment scenarios
+involving article reviewers, processing tasks, and scheduling
+constraints.2 ChalkCase Study
+Based
+Learning
+20Apply bipartite matching and assignment techniques to
+determine feasible allocations under given constraints.3 LTCProblem-Based
+Learning
+30Integrate assignment-analysis functionality into TextHack
+and validate matching results using representative datasets.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  17
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap optimization problems encountered in
+TextHack and identify factors that influence computational
+difficulty .2 TalkJust in-time
+teaching
+30Explain decision problems, optimization problems, and the
+characteristics of complexity classes P , NP, and co-NP .2 ChalkCase Study
+Based
+Learning
+20Analyze scheduling and resource-allocation scenarios within
+TextHack and determine the computational challenges
+associated with lar ge problem instances.4 LTCProblem-Based
+Learning
+30Analyze representative scheduling datasets and classify
+problem instances based on their computational complexity
+characteristics.4 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions7/20/26, 11:23 AM about:blank
+about:blank 36/50
+=== PAGE 37 ===
+SESSION NUMBER :  18
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap complexity classes and identify the
+characteristics that distinguish NP-Complete problems from
+polynomial-time solvable problems.2 TalkJust in-time
+teaching
+30Describe NP-Completeness, Cook-Levin Theorem, and the
+significance of Boolean Satisfiability in computational
+complexity theory .2 ChalkCase Study
+Based
+Learning
+20Compare reduction relationships among 3-SA T, Clique,
+Independent Set, Vertex Cover , Knapsack, Hamiltonian
+Cycle, and Travelling Salesperson Problem.4 LTCProblem-Based
+Learning
+30Organize representative NP-Complete problems into
+reduction chains and interpret how computational hardness is
+transferred between problems.4 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  19
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap NP-Hard optimization problems and
+identify situations where exact solutions become
+computationally expensive.2 TalkJust in-time
+teaching
+30Explain approximation algorithms, approximation ratios, and
+performance guarantees associated with approximation-based
+optimization.2 ChalkCase Study
+Based
+Learning
+20Differentiate exact and approximate solution strategies using
+representative optimization problems and evaluate their
+trade-of fs.4 LTCProblem-Based
+Learning
+30Analyze Vertex Cover approximation strategies and assess
+solution quality using approximation-ratio measures within
+TextHack scheduling demonstrations.4 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  20
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap NP-Hardness and approximation
+concepts covered throughout the module.2 TalkJust in-time
+teaching7/20/26, 11:23 AM about:blank
+about:blank 37/50
+=== PAGE 38 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+30Examine optimization challenges associated with scheduling,
+resource allocation, and routing problems.2 ChalkCase Study
+Based
+Learning
+20Analyze exact and approximate solutions for representative
+optimization problems and evaluate their ef fectiveness under
+practical constraints.4 LTCProblem-Based
+Learning
+30Investigate the complete scheduling workflow within
+TextHack and evaluate the role of approximation algorithms
+in generating feasible solutions.4 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  21
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap randomized algorithms and primality-
+testing concepts.2 TalkJust in-time
+teaching
+30Examine lar ge-number validation requirements and discuss
+practical applications of probabilistic algorithms in modern
+computing systems.2 ChalkCase Study
+Based
+Learning
+20Apply Miller -Rabin testing to representative lar ge integers
+and investigate confidence levels associated with repeated
+testing iterations.3 LTCProblem-Based
+Learning
+30Integrate primality-testing functionality into TextHack and
+validate results using representative datasets.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  22
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap hashing techniques and probabilistic
+computation concepts.2 TalkJust in-time
+teaching
+30Examine data-processing scenarios involving lar ge data
+streams and discuss the need for ef ficient randomized
+techniques.2 ChalkCase Study
+Based
+Learning
+20Apply Universal Hashing, Perfect Hashing, and Reservoir
+Sampling concepts to representative datasets.3 LTCProblem-Based
+Learning
+30Investigate how randomized techniques can improve data
+handling and retrieval operations within TextHack.3 LTCLab Taken to
+Class7/20/26, 11:23 AM about:blank
+about:blank 38/50
+=== PAGE 39 ===
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  23
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap parallel algorithm concepts and
+execution models.2 TalkJust in-time
+teaching
+30Examine lar ge-scale text-processing and analytics tasks
+performed within TextHack. Discuss opportunities for
+parallel execution.2 ChalkCase Study
+Based
+Learning
+20Apply work-span analysis and investigate performance
+characteristics of representative computational workloads.3 LTCProblem-Based
+Learning
+30Evaluate scalability behavior of selected TextHack operations
+and compare sequential and parallel execution approaches.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+SESSION NUMBER :  24
+No Session Outcomes are mapped
+Time(min) Topic BTLTeaching-
+Learning
+MethodsActive
+Learning
+Methods
+10Attendance & Recap randomized algorithms, parallel
+algorithms, and optimization techniques covered throughout
+the course.2 TalkJust in-time
+teaching
+30Examine the complete TextHack workflow including search,
+similarity analysis, fuzzy matching, citation analytics,
+scheduling demonstrations, and primality testing.2 ChalkCase Study
+Based
+Learning
+20Apply randomized and parallel-processing concepts to
+representative TextHack functionalities and investigate
+performance improvements.3 LTCProblem-Based
+Learning
+30Evaluate the complete TextHack system by validating
+functionality , execution ef ficiency , scalability , and
+algorithmic suitability across all modules.3 LTCLab Taken to
+Class
+10 Conclusion and Summary . 2 TalkQuiz/T est
+Questions
+WEEKLY HOMEWORK ASSIGNMENTS/ PROBLEM SETS/OPEN ENDEDED PROBLEM-SOLVING EXERCISES etc:
+WeekAssignment
+TypeAssignment
+NoTopic Details co7/20/26, 11:23 AM about:blank
+about:blank 39/50
+=== PAGE 40 ===
+COURSE TIME TABLE:
+Hour 1 2 3 4 5 6 7 8 9
+Day Component
+MonTheoryH-S1,H-
+S2,H-S3H-S1,H-
+S2,H-S3--- --- ----
+--- -- --
+Tutorial -- -- --- --- ----
+--- -- --
+Lab -- -- --- --- ----
+--- -- --
+Skilling -- -- --- ---H-S1,H-
+S1,H-
+S2,H-
+S2,H-
+S3,H-S3--
+-H-S1,H-
+S1,H-
+S2,H-
+S2,H-
+S3,H-S3H-S4,H-
+S4,H-
+S5,H-
+S5,H-
+S6,H-S6H-S4,H-
+S4,H-S5,H-
+S5,H-S6,H-
+S6
+TueTheory -- -- -- -- -----
+--- -- ---
+Tutorial -- -- -- -- -----
+--- -- ---
+Lab -- -- -- -- -----
+-H-
+S10,H-
+S10,H-
+S11,H-
+S11H-
+S10,H-
+S10,H-
+S11,H-
+S11---
+SkillingH-
+S10,H-
+S10,H-
+S11,H-
+S11H-
+S10,H-
+S10,H-
+S11,H-
+S11H-S4,H-
+S4,H-S5,H-
+S5,H-S6,H-
+S6H-S4,H-
+S4,H-S5,H-
+S5,H-S6,H-
+S6-----
+--- -- ---
+WedTheoryH-S7,H-
+S8,H-S9H-S7,H-
+S8,H-S9H-S10,H-
+S11H-S10,H-
+S11H-S4,H-
+S5,H-S6--
+-H-S4,H-
+S5,H-S6-- ---
+Tutorial -- -- -- -- ----
+--- -- ---
+Lab -- -- -- -- ----
+--- -- ---
+Skilling -- -- -- -- ----
+-H-
+S12,H-
+S12,H-
+S13,H-
+S13H-
+S12,H-
+S12,H-
+S13,H-
+S13---
+Thu
+TheoryH-
+S12,H-
+S13H-
+S12,H-
+S13-- -- ----
+--- --- ---
+Tutorial -- -- -- -- ----
+--- --- ---
+Lab -- -- H-S1,H-
+S1,H-S2,H-H-S1,H-
+S1,H-S2,H-H-
+S12,H-
+S12,H---
+-H-
+S12,H-
+S12,H---- ---7/20/26, 11:23 AM about:blank
+about:blank 40/50
+=== PAGE 41 ===
+Hour 1 2 3 4 5 6 7 8 9
+S2,H-S3,H-
+S3S2,H-S3,H-
+S3S13,H-
+S13S13,H-
+S13
+Skilling -- -- -- -- ----
+--- --- ---
+FriTheory -- -- -- -- -----
+---- -- --
+Tutorial -- -- -- -- -----
+---- -- --
+LabH-S7,H-
+S7,H-
+S8,H-
+S8,H-
+S9,H-S9H-S7,H-
+S7,H-
+S8,H-
+S8,H-
+S9,H-S9-- -- -----
+---- -- --
+Skilling -- --H-S1,H-
+S1,H-S2,H-
+S2,H-S3,H-
+S3,H-
+S10,H-
+S10,H-
+S11,H-S1 1H-S1,H-
+S1,H-S2,H-
+S2,H-S3,H-
+S3,H-
+S10,H-
+S10,H-
+S11,H-S1 1-----
+----H-S7,H-
+S7,H-
+S8,H-
+S8,H-
+S9,H-S9H-S7,H-
+S7,H-S8,H-
+S8,H-S9,H-
+S9,H-
+S12,H-
+S12,H-
+S13,H-S13
+SatTheory -- -- -- --- ----
+--- --- ---
+Tutorial -- -- -- --- ----
+--- --- ---
+LabH-S4,H-
+S4,H-
+S5,H-
+S5,H-
+S6,H-S6H-S4,H-
+S4,H-
+S5,H-
+S5,H-
+S6,H-S6-- --- ----
+--- --- ---
+Skilling -- --H-S12,H-
+S12,H-
+S13,H-S13---H-S7,H-
+S7,H-
+S8,H-
+S8,H-
+S9,H-S9--
+-H-S7,H-
+S7,H-
+S8,H-
+S8,H-
+S9,H-S9--- ---
+SunTheory -- -- -- -- -- ---- -- --
+Tutorial -- -- -- -- -- ---- -- --
+Lab -- -- -- -- -- ---- -- --
+Skilling -- -- -- -- -- ---- -- --
+REMEDIAL CLASSES:
+Supplementary course handouts, including special lectures and discussions, will be planned and the schedule will be
+notified accordingly .
+SELF-LEARNING:
+Assignments to promote self-learning, survey of contents from multiple sources.7/20/26, 11:23 AM about:blank
+about:blank 41/50
+=== PAGE 42 ===
+S.no Topics CO ALM Refer ences/MOOCS
+1 Investigate how modern text-search systems process
+user queries and retrieve relevant information from
+large document repositories.CO1 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 1995
+2 Examine the limitations of conventional algorithms in
+handling lar ge-scale text analytics and sequence-search
+applications.CO1 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 1995
+3 Explore suf fix-array construction techniques and
+investigate their role in improving document similarity
+analysis within TextHack.CO2 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,7/20/26, 11:23 AM about:blank
+about:blank 42/50
+=== PAGE 43 ===
+S.no Topics CO ALM Refer ences/MOOCS
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 1995
+4 Investigate the applications of Suf fix Trees and Suf fix
+Automata in lar ge-scale text-processing systems.CO2 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 1995
+5 Explore Dynamic Programming on Trees and
+investigate its applicability to hierarchical information
+structures.CO3 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized7/20/26, 11:23 AM about:blank
+about:blank 43/50
+=== PAGE 44 ===
+S.no Topics CO ALM Refer ences/MOOCS
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 1995
+6 Investigate Sum-over -Subsets (SOS) Dynamic
+Programming and explore its applications in
+combinatorial optimization problems.CO3 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 1995
+7 Investigate Dinic’ s Algorithm and analyze how level
+graphs and blocking flows improve maximum-flow
+computation.CO4 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 1995
+8 Explore Minimum Cost Maximum Flow techniques and
+examine their applications in assignment and scheduling
+problems.CO4 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.7/20/26, 11:23 AM about:blank
+about:blank 44/50
+=== PAGE 45 ===
+S.no Topics CO ALM Refer ences/MOOCS
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 1995
+9 Investigate Parameterized Complexity and
+Kernelization techniques for solving computationally
+hard optimization problems.CO5 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 1995
+10 Examine PT AS, FPT AS, and APX classes and analyze
+their significance in approximation-based optimization.CO5 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.7/20/26, 11:23 AM about:blank
+about:blank 45/50
+=== PAGE 46 ===
+S.no Topics CO ALM Refer ences/MOOCS
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 1995
+11 Explore Perfect Hashing techniques and investigate
+their role in ef ficient data retrieval systems.CO6 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 1995
+12 Investigate Reservoir Sampling techniques and analyze
+their applications in processing lar ge-scale streaming
+data.CO6 Case Study
+Based Learning1. Introduction to
+Algorithms, Cormen,
+Leiserson, Rivest &
+Stein (CLRS), MIT
+Press, 2022 (4th Ed.) 2.
+Algorithm Design, Jon
+Kleinber g & Éva Tardos,
+Pearson, 2005 3.
+Network Flows: Theory ,
+Algorithms, and
+Applications, Ravindra
+K. Ahuja, Thomas L.
+Magnanti & James B.
+Orlin, Pearson, 1993 4.
+Approximation
+Algorithms, Vijay V.
+Vazirani, Springer , 2003
+5. Randomized
+Algorithms, Rajeev
+Motwani & Prabhakar
+Raghavan, Cambridge
+University Press, 19957/20/26, 11:23 AM about:blank
+about:blank 46/50
+=== PAGE 47 ===
+DELIVERY DETAILS OF CONTENT BEYOND SYLLABUS:
+Content beyond syllabus covered (if any) should be delivered to all students that would be planned, and schedule
+notified accordingly .
+S.noAdvanced Topics, Additional Reading, Resear ch
+papers and anyCO ALM Refer ences/MOOCS
+EVALUA TION PLAN:
+Evaluation
+TypeEvaluation
+ComponentWeightage/MarksAssessment
+DatesDuration
+(Minutes)CO1 CO2 CO3 CO4 CO5 CO6
+End
+Semester
+Summative
+Evaluation
+Total= 40
+%Term End
+Project
+Defence &
+DemonstrationWeightage 16
+1803 2.5 2.5 2.5 2.5 3
+Max Marks 60 10 10 10 10 10 10
+End Semester
+ExamWeightage 241802 2 2 6 6 6
+Max Marks 90 10 10 10 20 20 20
+In
+Semester
+Formative
+Evaluation
+Total= 36
+%Global
+Challenges -
+ParticipationWeightage 12
+902 2 2 2 2 2
+Max Marks 60 10 10 10 10 10 10
+Active
+Learning
+Engagement
+(In-Class)Weightage 8
+901 1 1 2 2 1
+Max Marks 60 10 10 10 10 10 10
+Practical
+Continuous
+EvaluationWeightage 8
+901 1.5 1.5 1.5 1.5 1
+Max Marks 60 10 10 10 10 10 10
+Project
+Continuous
+EvaluationWeightage 8
+901.5 1 1 1.5 1.5 1.5
+Max Marks 60 10 10 10 10 10 10
+In
+Semester
+Summative
+Evaluation
+Total= 24
+%In-Term
+Practical
+ExaminationWeightage 6
+1001 1 1 1 1 1
+Max Marks 50 5 5 10 10 10 10
+Mid-T erm
+Examination
+(Descriptive)Weightage 12
+904 4 4
+Max Marks 45 15 15 15
+MOOCs
+Evaluation
+(Certificate +
+Test)Weightage 6
+901 1 1 1 1 1
+Max Marks 60 10 10 10 10 10 10
+ATTENDANCE POLICY:
+Every student is expected to be responsible for regularity of his/her attendance in class rooms and laboratories, to
+appear in scheduled tests and examinations and fulfill all other tasks assigned to him/her in every course
+In every course, student has to maintain a minimum of 85% attendance to be eligible for appearing in Semester end
+examination of the course, for cases of medical issues and other unavoidable circumstances the students will be
+condoned if their attendance is between 75% to 85% in every course, subjected to submission of medical
+certificates, medical case file and other needful documental proof to the concerned departments7/20/26, 11:23 AM about:blank
+about:blank 47/50
+=== PAGE 48 ===
+DETENTION POLICY :
+In any course, a student has to maintain a minimum of 85% attendance and In-Semester Examinations to be eligible
+for appearing to the Semester End Examination, failing to fulfill these conditions will deem such student to have
+been detained in that course.
+PLAGIARISM POLICY :
+Plagiarism is treated as a serious academic of fense, and the university enforces a strict zero-tolerance policy to
+uphold academic integrity . For a first of fense, minor cases may result in a warning and reduced marks, while major
+cases may lead to a zero grade and mandatory academic integrity training. A second of fense will result in a zero
+grade, formal reprimand, and academic probation, whereas a third of fense may lead to suspension and a permanent
+record of misconduct. Repeated violations can result in expulsion, and in group work, all members are held
+accountable unless responsibility is clearly established.
+COURSE TEAM MEMBERS, CHAMBER CONSULTATION HOURS AND CHAMBER VENUE DETAILS:
+Name of FacultyDelivery
+Component
+of FacultySections
+of
+FacultyChamber
+Consultation
+Day (s)Chamber
+Consultation
+Timings for
+each dayChamber
+Consultation
+Room No:Signatur e
+of Course
+faculty:
+Ch Anuradha L 1-MA - - - -
+Ch Anuradha P4-B,7-
+B,1-A- - - -
+Ch Anuradha S 1-A,4-B - - - -
+Dyuti Banerjee L 13-MA - - - -
+Dyuti Banerjee P 13-A - - - -
+Dyuti Banerjee S13-A,1 1-
+B- - - -
+MUNIRAJU
+VADLAMUDIS 1-B - - - -
+Dr.JARAJAPU DEVI L 3-MA - - - -
+Dr.JARAJAPU DEVI P8-B,3-
+A,5-B- - - -
+Dr.JARAJAPU DEVI S 3-A,5-B - - - -
+Yamini Jonnala L 4-MA - - - -
+Yamini Jonnala P9-B,4-
+A,3-B- - - -
+Yamini Jonnala S9-B,3-
+B,4-A- - - -
+Anitha Chekuri L 11-MA - - - -
+Anitha Chekuri P 11-A - - - -
+Anitha Chekuri S12-B,1 1-
+A- - - -
+LakshmiPrasanna
+YeluriS 13-B - - - -
+Swathi D L 5-MA - - - -
+Swathi D P 1-B,5-A - - - -7/20/26, 11:23 AM about:blank
+about:blank 48/50
+=== PAGE 49 ===
+Name of FacultyDelivery
+Component
+of FacultySections
+of
+FacultyChamber
+Consultation
+Day (s)Chamber
+Consultation
+Timings for
+each dayChamber
+Consultation
+Room No:Signatur e
+of Course
+faculty:
+Swathi D S5-A,7-
+B,1-B- - - -
+Bedudoori
+DwarakanathS 13-B - - - -
+Chandusha kanda L12-
+MA,10-
+MA- - - -
+Chandusha kanda P12-A,10-
+A- - - -
+Chandusha kanda S12-A,10-
+A- - - -
+venkateswararao
+KatevarapuP 11-B - - - -
+venkateswararao
+KatevarapuS 12-B - - - -
+Sanikommu Madhavi L 7-MA - - - -
+Sanikommu Madhavi P 2-B,7-A - - - -
+Sanikommu Madhavi S2-B,6-
+B,7-A- - - -
+I V SAI HARITHA P 10-B - - - -
+I V SAI HARITHA S 10-B - - - -
+JAGAN MOHAN
+REDDY  DNADAP 12-B - - - -
+USHA  MUNAGOTI S 8-B - - - -
+VINA Y KUMAR
+SRIPERAMBUDURIL9-MA,2-
+MA- - - -
+VINA Y KUMAR
+SRIPERAMBUDURIP2-A,6-
+B,9-A- - - -
+VINA Y KUMAR
+SRIPERAMBUDURIS 9-A,2-A - - - -
+Dasari . S 11-B - - - -
+Sireesha Vikkurty L8-MA,6-
+MA- - - -
+Sireesha Vikkurty P 6-A,8-A - - - -
+Sireesha Vikkurty S 8-A,6-A - - - -
+Raghupathi Manthena S 10-B - - - -
+Soumya Enukonda P 13-B - - - -
+GENERAL INSTRUCTIONS
+Students should come prepared for classes by reviewing the prescribed video lectures in advance and carrying the
+required textbook(s) or study material(s) as specified by the Course Faculty .
+NOTICES7/20/26, 11:23 AM about:blank
+about:blank 49/50
+=== PAGE 50 ===
+All course-related notices and communications will be shared through the of ficial institutional email.
+Signatur e of COURSE COORDINA TOR
+(Anitha Chekuri)(9040)(CSE-1)
+Signatur e of Department Pr of. Incharge Academics & Vetting Team Member
+Department Of CSE-1
+HEAD OF  DEP ARTMENT :
+Appr oval fr om: DEAN-ACADEMICS
+(Sign with Of fice Seal)
+[object HTMLDivElement]7/20/26, 11:23 AM about:blank
+about:blank 50/50

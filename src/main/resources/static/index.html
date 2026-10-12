@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>CareGrid | Hospital scheduling</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top" aria-label="CareGrid home"><span class="brand-mark">+</span><span>care<span class="brand-accent">grid</span></span></a>
+      <div class="nav-caption">WORKSPACE</div>
+      <nav aria-label="Main navigation">
+        <a class="nav-link active" href="#overview"><span class="nav-icon">▦</span>Overview</a>
+        <a class="nav-link" href="#patients"><span class="nav-icon">♙</span>Patients</a>
+        <a class="nav-link" href="#hospitals"><span class="nav-icon">⌂</span>Hospitals</a>
+        <a class="nav-link" href="#intake"><span class="nav-icon">＋</span>Emergency intake</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="live-indicator"></div><div><strong>Scheduling system</strong><small>Connected to local API</small></div></div>
+    </aside>
+
+    <main id="top" class="main-content">
+      <header class="topbar">
+        <div class="breadcrumb">Workspace <span>/</span> <strong>Overview</strong></div>
+        <div class="topbar-actions"><span class="today-label" id="today-label"></span><button class="icon-button" id="refresh-button" title="Refresh data" aria-label="Refresh data">↻</button><div class="avatar">HS</div></div>
+      </header>
+
+      <section id="overview" class="page-heading">
+        <div><div class="eyebrow">HOSPITAL OPERATIONS</div><h1>Good day, Scheduler</h1><p>Here’s what’s happening across your care network.</p></div>
+        <button class="primary-button" id="run-schedule"><span>✳</span> Run scheduling</button>
+      </section>
+
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <section class="kpi-grid" aria-label="Scheduling summary">
+        <article class="kpi-card"><div class="kpi-top"><span>Total patients</span><span class="kpi-icon blue">♙</span></div><div class="kpi-value" id="kpi-patients">—</div><div class="kpi-foot">Across all facilities</div></article>
+        <article class="kpi-card"><div class="kpi-top"><span>Scheduled</span><span class="kpi-icon green">✓</span></div><div class="kpi-value" id="kpi-scheduled">—</div><div class="kpi-foot"><span class="dot green-dot"></span>Assigned to care</div></article>
+        <article class="kpi-card"><div class="kpi-top"><span>Awaiting schedule</span><span class="kpi-icon amber">◷</span></div><div class="kpi-value" id="kpi-pending">—</div><div class="kpi-foot"><span class="dot amber-dot"></span>Needs a time slot</div></article>
+        <article class="kpi-card"><div class="kpi-top"><span>Available beds</span><span class="kpi-icon violet">▤</span></div><div class="kpi-value" id="kpi-beds">—</div><div class="kpi-foot" id="kpi-bed-total">Across all facilities</div></article>
+      </section>
+
+      <section id="hospitals" class="section-block">
+        <div class="section-heading"><div><h2>Hospital network</h2><p>Capacity and operating room availability</p></div><span class="section-count" id="hospital-count">— facilities</span></div>
+        <div class="hospital-grid" id="hospital-grid"><div class="loading-card">Loading hospital network…</div></div>
+      </section>
+
+      <section id="patients" class="section-block patient-section">
+        <div class="section-heading"><div><h2>Patient schedule</h2><p>Review assignments and manage patient discharge</p></div><div class="table-tools"><label class="search-box"><span>⌕</span><input id="patient-search" type="search" placeholder="Search patients" aria-label="Search patients"></label><select id="status-filter" aria-label="Filter patients by status"><option value="all">All patients</option><option value="scheduled">Scheduled</option><option value="pending">Pending</option><option value="discharged">Discharged</option></select></div></div>
+        <div class="table-wrap"><table><thead><tr><th>PATIENT</th><th>PROCEDURE</th><th>PRIORITY</th><th>ARRIVAL</th><th>SCHEDULE</th><th>STATUS</th><th></th></tr></thead><tbody id="patient-rows"><tr><td colspan="7" class="empty-state">Loading patients…</td></tr></tbody></table></div>
+        <div class="table-footer" id="patient-count"></div>
+      </section>
+
+      <section id="intake" class="section-block intake-section">
+        <div class="section-heading"><div><h2>Emergency intake</h2><p>Add an emergency patient and re-evaluate the schedule</p></div><span class="emergency-tag"><span class="dot red-dot"></span>Priority intake</span></div>
+        <form id="emergency-form" class="intake-form">
+          <label>Patient name<input name="name" required maxlength="100" placeholder="Full name"></label>
+          <label>Surgery type<select name="surgeryType" required><option value="">Select procedure</option><option>CARDIAC</option><option>ORTHOPEDIC</option><option>NEUROLOGICAL</option><option>GENERAL</option><option>OPHTHALMIC</option><option>ENT</option></select></label>
+          <label>Duration (minutes)<input name="durationMinutes" type="number" min="1" max="1440" required placeholder="90"></label>
+          <label>Arrival time<input name="arrivalTime" type="time" required></label>
+          <label class="icu-option"><input name="requiresICU" type="checkbox"><span>Requires ICU bed</span></label>
+          <button class="primary-button" type="submit">＋ Add emergency patient</button>
+        </form>
+      </section>
+      <footer class="footer"><span>CareGrid <span class="footer-dot">•</span> Hospital scheduling workspace</span><span>Data refreshes from the live scheduler API</span></footer>
+    </main>
+  </div>
+
+  <dialog id="discharge-dialog" class="dialog-card">
+    <form id="discharge-form" method="dialog">
+      <div class="dialog-top"><div><div class="eyebrow">PATIENT DISCHARGE</div><h2>Release patient</h2></div><button class="icon-button close-button" type="button" aria-label="Close">×</button></div>
+      <p id="discharge-patient-label">Select a discharge time. It must be after surgery completion.</p>
+      <label>Discharge time<input type="time" name="dischargeTime" required></label>
+      <input type="hidden" name="patientId">
+      <div class="dialog-actions"><button class="secondary-button close-button" type="button">Cancel</button><button class="primary-button" type="submit">Confirm discharge</button></div>
+    </form>
+  </dialog>
+  <script src="/app.js" defer></script>
+</body>
+</html>
