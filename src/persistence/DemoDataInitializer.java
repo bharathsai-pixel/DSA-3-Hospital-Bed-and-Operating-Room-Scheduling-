@@ -20,9 +20,21 @@ public class DemoDataInitializer implements ApplicationRunner {
     }
     @Override @Transactional
     public void run(ApplicationArguments args){
-        if(hospitals.count()!=0 || patients.count()!=0) return;
-        hospitals.saveAll(SampleData.getHospitals().stream().map(mapper::toEntity).toList());
-        patients.saveAll(SampleData.getPatients().stream()
+        var existingHospitals=hospitals.findAll();
+        var existingPatients=patients.findAll();
+        var samplePatients=SampleData.getPatients();
+        if(existingHospitals.isEmpty() && existingPatients.isEmpty()) {
+            hospitals.saveAll(SampleData.getHospitals().stream().map(mapper::toEntity).toList());
+            patients.saveAll(samplePatients.stream()
+                .map(patient->mapper.toEntity(patient,PatientEntity.Status.PENDING)).toList());
+            return;
+        }
+
+        // Upgrade only the untouched original 12-patient demo database; never append fixtures to user data.
+        boolean originalDemoPatients=existingHospitals.size()>0 && existingPatients.size()==12
+                && existingPatients.stream().allMatch(saved -> saved.getId()>=1 && saved.getId()<=12
+                && samplePatients.get(saved.getId()-1).getName().equals(saved.getName()));
+        if(originalDemoPatients) patients.saveAll(samplePatients.subList(12,samplePatients.size()).stream()
                 .map(patient->mapper.toEntity(patient,PatientEntity.Status.PENDING)).toList());
     }
 }

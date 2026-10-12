@@ -25,6 +25,9 @@ public class Patient {
     private int id;
     private String name;
     private int age;
+    private String gender;
+    private String bloodGroup;
+    private String allergies;
     private Priority priority;
     private SurgeryType surgeryType;
     private int surgeryDuration; // in minutes
@@ -71,6 +74,9 @@ public class Patient {
     public int getId() { return id; }
     public String getName() { return name; }
     public int getAge() { return age; }
+    public String getGender() { return gender; }
+    public String getBloodGroup() { return bloodGroup; }
+    public String getAllergies() { return allergies; }
     public Priority getPriority() { return priority; }
     public SurgeryType getSurgeryType() { return surgeryType; }
     public int getSurgeryDuration() { return surgeryDuration; }
@@ -91,6 +97,12 @@ public class Patient {
 
     // Setters
     public void setPriority(Priority priority) { this.priority = priority; }
+    public void setAge(int age) { this.age = age; }
+    public void setDemographics(String gender, String bloodGroup, String allergies) {
+        this.gender = gender;
+        this.bloodGroup = bloodGroup;
+        this.allergies = allergies;
+    }
     public void setPreferredHospitalId(int hospitalId) { this.preferredHospitalId = hospitalId; }
     public void setArrivalTime(int arrivalTime) {
         if (arrivalTime < 0 || arrivalTime >= 1440) throw new IllegalArgumentException("Arrival time must be within one day.");

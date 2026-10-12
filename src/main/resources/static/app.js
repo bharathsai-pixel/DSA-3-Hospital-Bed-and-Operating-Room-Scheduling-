@@ -28,7 +28,11 @@ async function api(path, options = {}) {
     headers: { ...(options.body ? { 'Content-Type': 'application/json' } : {}), ...options.headers }
   });
   const data = response.status === 204 ? null : await response.json().catch(() => null);
-  if (!response.ok) throw new Error(data?.error || data?.message || `Request failed (${response.status})`);
+  if (!response.ok) {
+    const error = new Error(data?.error || data?.message || `Request failed (${response.status})`);
+    error.fieldErrors = data?.fieldErrors || {};
+    throw error;
+  }
   return data;
 }
 
@@ -161,26 +165,50 @@ async function submitEmergency(event) {
   event.preventDefault();
   const form = event.currentTarget;
   const button = form.querySelector('button[type="submit"]');
+  clearEmergencyErrors();
+  if (!form.reportValidity()) return;
   const fields = new FormData(form);
+  if (!String(fields.get('name') || '').trim()) {
+    setEmergencyError('name', 'Patient name is required.');
+    form.elements.name.focus();
+    return;
+  }
   const payload = {
-    name: fields.get('name'),
+    name: String(fields.get('name')).trim(),
+    age: fields.get('age') === '' ? null : Number(fields.get('age')),
+    gender: fields.get('gender') || null,
+    bloodGroup: fields.get('bloodGroup') || null,
+    allergies: String(fields.get('allergies') || '').trim() || null,
     surgeryType: fields.get('surgeryType'),
     durationMinutes: Number(fields.get('durationMinutes')),
-    requiresICU: fields.get('requiresICU') === 'on',
+    requiresICU: fields.get('requiresICU') === '' ? null : fields.get('requiresICU') === 'true',
     arrivalTime: localClockTime(fields.get('arrivalTime'))
   };
   setBusy(button, true, 'Adding patient…');
   try {
-    const patient = await api('/api/emergencies', { method: 'POST', body: JSON.stringify(payload) });
+    const patient = await api('/api/emergencies/intake', { method: 'POST', body: JSON.stringify(payload) });
     form.reset();
     await refreshData();
     showNotice(`Emergency patient ${patient.name} (P${patient.id}) added and the schedule was re-evaluated.`);
     $('#patients').scrollIntoView({ behavior: 'smooth' });
   } catch (error) {
+    Object.entries(error.fieldErrors || {}).forEach(([field, message]) => setEmergencyError(field, message));
     showNotice(`Emergency intake failed: ${error.message}`, true);
   } finally {
     setBusy(button, false);
   }
+}
+
+function setEmergencyError(field, message) {
+  const input = document.querySelector(`#emergency-form [name="${field}"]`);
+  const output = document.querySelector(`#error-${field}`);
+  if (input) input.setAttribute('aria-invalid', 'true');
+  if (output) output.textContent = message;
+}
+
+function clearEmergencyErrors() {
+  document.querySelectorAll('#emergency-form [aria-invalid="true"]').forEach((input) => input.removeAttribute('aria-invalid'));
+  document.querySelectorAll('#emergency-form .field-error').forEach((output) => { output.textContent = ''; });
 }
 
 function openDischarge(id, name) {
@@ -216,6 +244,8 @@ $('#refresh-button').addEventListener('click', () => refreshData(true));
 $('#patient-search').addEventListener('input', renderPatients);
 $('#status-filter').addEventListener('change', renderPatients);
 $('#emergency-form').addEventListener('submit', submitEmergency);
+$('#emergency-form').addEventListener('input', clearEmergencyErrors);
+$('#emergency-form').addEventListener('change', clearEmergencyErrors);
 $('#discharge-form').addEventListener('submit', submitDischarge);
 document.querySelectorAll('.close-button').forEach((button) => button.addEventListener('click', () => $('#discharge-dialog').close()));
 refreshData();

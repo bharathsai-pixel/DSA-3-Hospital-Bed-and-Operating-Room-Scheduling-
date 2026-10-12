@@ -10,6 +10,9 @@ public class PatientEntity {
     @Id private Integer id;
     @Column(nullable=false) private String name;
     private int age;
+    private String gender;
+    private String bloodGroup;
+    @Column(length=500) private String allergies;
     @Enumerated(EnumType.STRING) private Patient.Priority priority;
     @Enumerated(EnumType.STRING) private Patient.SurgeryType surgeryType;
     private int surgeryDuration;
@@ -33,4 +36,6 @@ public class PatientEntity {
     public double getLatitude(){return latitude;} public double getLongitude(){return longitude;} public Status getStatus(){return status;}
     public int getDischargeTime(){return dischargeTime;} public void setStatus(Status status){this.status=status;}
     public void setDischargeTime(int dischargeTime){this.dischargeTime=dischargeTime;}
+    public String getGender(){return gender;} public String getBloodGroup(){return bloodGroup;} public String getAllergies(){return allergies;}
+    public void setDemographics(String gender,String bloodGroup,String allergies){this.gender=gender;this.bloodGroup=bloodGroup;this.allergies=allergies;}
 }

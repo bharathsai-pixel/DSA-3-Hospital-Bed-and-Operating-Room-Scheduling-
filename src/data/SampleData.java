@@ -56,6 +56,10 @@ public class SampleData {
         patients.add(new Patient(10, "Julia Bell", 39, Patient.Priority.EMERGENCY, Patient.SurgeryType.NEUROLOGICAL, 150, 640, 3, true));
         patients.add(new Patient(11, "Kevin Ford", 60, Patient.Priority.ELECTIVE, Patient.SurgeryType.GENERAL, 50, 660, 1, false));
         patients.add(new Patient(12, "Lucy Kane", 22, Patient.Priority.EMERGENCY, Patient.SurgeryType.ORTHOPEDIC, 90, 700, 3, false));
+        patients.add(new Patient(13, "Maya Chen", 33, Patient.Priority.ELECTIVE, Patient.SurgeryType.OPHTHALMIC, 45, 730, 2, false));
+        patients.add(new Patient(14, "Noah Patel", 48, Patient.Priority.URGENT, Patient.SurgeryType.GENERAL, 80, 745, 1, false));
+        patients.add(new Patient(15, "Olivia Green", 66, Patient.Priority.EMERGENCY, Patient.SurgeryType.CARDIAC, 120, 760, 3, true));
+        patients.add(new Patient(16, "Peter Adams", 29, Patient.Priority.ELECTIVE, Patient.SurgeryType.ENT, 50, 780, 2, false));
         return patients;
     }
 }

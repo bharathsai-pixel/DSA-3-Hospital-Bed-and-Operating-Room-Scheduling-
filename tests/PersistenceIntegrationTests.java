@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.DefaultApplicationArguments;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import jakarta.validation.Validator;
+import jakarta.validation.ConstraintViolation;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.MethodOrderer;
@@ -17,8 +21,12 @@ import persistence.repository.*;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(properties="spring.datasource.url=jdbc:h2:mem:persistence_integration;DB_CLOSE_DELAY=-1")
+@AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PersistenceIntegrationTests {
     @Autowired PatientRepository patients;
@@ -31,6 +39,64 @@ class PersistenceIntegrationTests {
     @Autowired DischargeRepository discharges;
     @Autowired DemoDataInitializer initializer;
     @Autowired SchedulerService service;
+    @Autowired Validator validator;
+    @Autowired MockMvc mockMvc;
+
+    @Test
+    @Order(1)
+    void emergencyIntakeValidatesRequiredAndOptionalFields() {
+        try {
+            mockMvc.perform(post("/api/emergencies/intake").contentType("application/json")
+                            .content("{\"name\":\"\",\"age\":121,\"gender\":\"Invalid\",\"bloodGroup\":\"X+\",\"allergies\":\"\"}"))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.fieldErrors.name").exists())
+                    .andExpect(jsonPath("$.fieldErrors.age").exists())
+                    .andExpect(jsonPath("$.fieldErrors.surgeryType").exists());
+        } catch (Exception exception) {
+            throw new AssertionError("Emergency API should return field-level validation errors.", exception);
+        }
+        EmergencyIntakeRequest complete=new EmergencyIntakeRequest("Emergency validation patient",42,"Female","O+",
+                "Penicillin", "GENERAL",60,"14:30",true);
+        assertThat(validator.validate(complete)).isEmpty();
+        EmergencyIntakeRequest optionalBlank=new EmergencyIntakeRequest("Emergency validation patient",0,"","", "",
+                "ENT",30,"14:30",false);
+        assertThat(validator.validate(optionalBlank)).isEmpty();
+
+        EmergencyIntakeRequest missing=new EmergencyIntakeRequest(" ",null,"","X+","x".repeat(501),
+                "",0,"25:61",null);
+        assertThat(validator.validate(missing)).extracting(ConstraintViolation::getPropertyPath)
+                .map(Object::toString).contains("name","age","bloodGroup","allergies","surgeryType",
+                        "durationMinutes","arrivalTime","requiresICU");
+        assertThat(validator.validate(new EmergencyIntakeRequest("Age low",-1,null,null,null,"GENERAL",1,"00:00",true)))
+                .extracting(ConstraintViolation::getPropertyPath).map(Object::toString).contains("age");
+        assertThat(validator.validate(new EmergencyIntakeRequest("Age high",121,null,null,null,"GENERAL",1,"00:00",true)))
+                .extracting(ConstraintViolation::getPropertyPath).map(Object::toString).contains("age");
+    }
+
+    @Test
+    @Order(6)
+    void emergencyIntakePersistsDemographicsAndUsesEmergencyPriority() {
+        EmergencyIntakeRequest request=new EmergencyIntakeRequest("Emergency form persistence",37,"Other","AB-",
+                "Latex", "GENERAL",30,"14:30",false);
+        Patient patient=service.addEmergency(request);
+        PatientEntity saved=patients.findById(patient.getId()).orElseThrow();
+        assertThat(saved.getAge()).isEqualTo(37);
+        assertThat(saved.getGender()).isEqualTo("Other");
+        assertThat(saved.getBloodGroup()).isEqualTo("AB-");
+        assertThat(saved.getAllergies()).isEqualTo("Latex");
+        assertThat(patient.getPriority()).isEqualTo(Patient.Priority.EMERGENCY);
+        assertThat(saved.isRequiresIcu()).isFalse();
+    }
+
+    @Test
+    @Order(7)
+    void legacyEmergencyEndpointKeepsItsTransactionOpenWhileMappingHospitals() throws Exception {
+        mockMvc.perform(post("/api/emergencies").contentType("application/json")
+                        .content("{\"name\":\"Legacy endpoint regression\",\"surgeryType\":\"GENERAL\",\"durationMinutes\":30,\"requiresICU\":false,\"arrivalTime\":\"14:30\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Legacy endpoint regression"))
+                .andExpect(jsonPath("$.age").value(40));
+    }
 
     @Test
     @Order(3)

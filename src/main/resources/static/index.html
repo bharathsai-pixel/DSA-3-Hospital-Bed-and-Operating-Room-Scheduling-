@@ -55,14 +55,18 @@
       </section>
 
       <section id="intake" class="section-block intake-section">
-        <div class="section-heading"><div><h2>Emergency intake</h2><p>Add an emergency patient and re-evaluate the schedule</p></div><span class="emergency-tag"><span class="dot red-dot"></span>Priority intake</span></div>
-        <form id="emergency-form" class="intake-form">
-          <label>Patient name<input name="name" required maxlength="100" placeholder="Full name"></label>
-          <label>Surgery type<select name="surgeryType" required><option value="">Select procedure</option><option>CARDIAC</option><option>ORTHOPEDIC</option><option>NEUROLOGICAL</option><option>GENERAL</option><option>OPHTHALMIC</option><option>ENT</option></select></label>
-          <label>Duration (minutes)<input name="durationMinutes" type="number" min="1" max="1440" required placeholder="90"></label>
-          <label>Arrival time<input name="arrivalTime" type="time" required></label>
-          <label class="icu-option"><input name="requiresICU" type="checkbox"><span>Requires ICU bed</span></label>
-          <button class="primary-button" type="submit">＋ Add emergency patient</button>
+        <div class="section-heading"><div><h2>Emergency Patient Intake</h2><p>Register an emergency patient and re-evaluate the schedule</p></div><span class="emergency-tag"><span class="dot red-dot"></span>Priority intake</span></div>
+        <form id="emergency-form" class="intake-form emergency-intake-form" novalidate>
+          <label><span>Patient name <span class="required-mark">*</span></span><input name="name" required maxlength="100" autocomplete="name" placeholder="Full name" aria-describedby="error-name"><small class="field-error" id="error-name"></small></label>
+          <label><span>Age <span class="required-mark">*</span></span><input name="age" type="number" min="0" max="120" step="1" required placeholder="Age in years" aria-describedby="error-age"><small class="field-error" id="error-age"></small></label>
+          <label><span>Gender <span class="optional-label">(optional)</span></span><select name="gender"><option value="">Select gender</option><option>Male</option><option>Female</option><option>Other</option></select><small class="field-error" id="error-gender"></small></label>
+          <label><span>Blood group <span class="optional-label">(optional)</span></span><select name="bloodGroup"><option value="">Select blood group</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select><small class="field-error" id="error-bloodGroup"></small></label>
+          <label class="wide-field"><span>Allergies <span class="optional-label">(optional)</span></span><input name="allergies" maxlength="500" placeholder="Enter known allergies" aria-describedby="error-allergies"><small class="field-error" id="error-allergies"></small></label>
+          <label><span>Surgery type <span class="required-mark">*</span></span><select name="surgeryType" required aria-describedby="error-surgeryType"><option value="">Select procedure</option><option>CARDIAC</option><option>ORTHOPEDIC</option><option>NEUROLOGICAL</option><option>GENERAL</option><option>OPHTHALMIC</option><option>ENT</option></select><small class="field-error" id="error-surgeryType"></small></label>
+          <label><span>Duration (minutes) <span class="required-mark">*</span></span><input name="durationMinutes" type="number" min="1" step="1" required placeholder="90" aria-describedby="error-durationMinutes"><small class="field-error" id="error-durationMinutes"></small></label>
+          <label><span>Arrival time <span class="required-mark">*</span></span><input name="arrivalTime" type="time" required aria-describedby="error-arrivalTime"><small class="field-error" id="error-arrivalTime"></small></label>
+          <label><span>Requires ICU bed <span class="required-mark">*</span></span><select name="requiresICU" required aria-describedby="error-requiresICU"><option value="">Choose Yes or No</option><option value="true">Yes</option><option value="false">No</option></select><small class="field-error" id="error-requiresICU"></small></label>
+          <button class="primary-button intake-submit" type="submit">＋ Add emergency patient</button>
         </form>
       </section>
       <footer class="footer"><span>CareGrid <span class="footer-dot">•</span> Hospital scheduling workspace</span><span>Data refreshes from the live scheduler API</span></footer>

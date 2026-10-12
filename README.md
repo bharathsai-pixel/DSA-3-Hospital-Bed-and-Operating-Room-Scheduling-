@@ -27,7 +27,7 @@ The API is available at `http://localhost:8080`:
 Emergency request JSON: `{"name":"Sam Lee","surgeryType":"GENERAL","durationMinutes":90,"requiresICU":false,"arrivalTime":"14:30"}`.
 Discharge request JSON: `{"dischargeTime":"16:45"}`. Times use 24-hour `HH:mm` format. Invalid input and unavailable discharge operations return HTTP 400 with an `error` message.
 
-The web application seeds demo data into a persistent file-based database once, on the first launch. The original `Main` command-line entry point remains available for algorithm-only use.
+The web application seeds 16 demo patients into a persistent file-based database on first launch. An existing database containing exactly the original 12 demo patients is upgraded with the four additional sample patients; databases with added or customized patient records are left unchanged. The original `Main` command-line entry point remains available for algorithm-only use.
 
 The system decomposes hospital scheduling into network-flow routing, heuristic room balancing, bounded exact dynamic programming, a scalable candidate-interval fallback, and minimum-cost bed assignment. It produces feasible schedules subject to its modeled constraints; it does not claim global optimality across the complete pipeline. See [ALGORITHMS.md](ALGORITHMS.md) for the actual stage objectives, source constants, complexity, limitations, and DSA-3 mapping.
 

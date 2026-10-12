@@ -27,7 +27,7 @@ This is a classroom simulation using hard-coded data, not a live or clinically v
 ======================================================================
 
 src/Main.java: console entry point, menu, pipeline invocation, emergency intake, reports, KMP search.
-src/data/SampleData.java: three hospitals, 22 beds, seven ORs, four staff records, 12 patients.
+src/data/SampleData.java: three hospitals, 22 beds, seven ORs, four staff records, 16 patients.
 src/models/Patient.java: patient attributes, priority/surgery enums and schedule state.
 src/models/Hospital.java: inventory and capacity/capability queries.
 src/models/OperatingRoom.java: surgery capabilities and time-slot records.
@@ -46,10 +46,10 @@ src/algorithms/DPScheduler.java: subset DP for patient sequencing, with weighted
 src/algorithms/HungarianAlgorithm.java: assignment solver.
 src/algorithms/KMPAlgorithm.java: substring search.
 src/reports/ReportGenerator.java: KPI and schedule output.
-src/main/java/.../persistence/: Spring Data JPA entities, repositories, domain mapper, and idempotent sample-data initializer for the REST application.
-src/main/java/.../service/SchedulerService.java: transactional REST workflows for scheduling, emergency intake, and discharge.
-src/main/resources/application.properties: file-backed H2 database and application settings.
-tests/PersistenceIntegrationTests.java: persistence-focused integration test cases (added; execution status is recorded in Section 14).
+src/persistence/: Spring Data JPA entities, repositories, domain mapper, and idempotent sample-data initializer for the REST application.
+src/web/SchedulerService.java and SchedulerController.java: transactional REST workflows and HTTP endpoints for scheduling, emergency intake, and discharge.
+src/main/resources/application.properties and static/: file-backed H2 settings and browser dashboard (HTML, CSS, JavaScript).
+tests/: dependency-free algorithm regression/benchmark programs and persistence integration tests.
 
 The handout supplies the course outcomes and syllabus. The PowerPoint supplies project goals and high-level description. The Java source is authoritative for actual behavior.
 
@@ -64,7 +64,7 @@ H3 Regional Trauma Center: 3 General + 4 ICU beds. Trauma OR-1: GENERAL, ORTHOPE
 
 There are 22 beds, seven ORs, and four staff members. The pipeline checks surgeon specialization, shifts, and existing assignments.
 
-12 patients (ID, name, priority, surgery, duration, arrival, ICU):
+16 patients (ID, name, priority, surgery, duration, arrival, ICU):
 P1 Alice Brown, Elective, GENERAL, 60m, 08:00, no.
 P2 Bob Smith, Urgent, CARDIAC, 180m, 08:20, yes.
 P3 Charlie Davis, Emergency, NEUROLOGICAL, 120m, 08:30, yes.
@@ -77,6 +77,10 @@ P9 Ian Cook, Urgent, GENERAL, 105m, 10:20, no.
 P10 Julia Bell, Emergency, NEUROLOGICAL, 150m, 10:40, yes.
 P11 Kevin Ford, Elective, GENERAL, 50m, 11:00, no.
 P12 Lucy Kane, Emergency, ORTHOPEDIC, 90m, 11:40, no.
+P13 Maya Chen, Elective, OPHTHALMIC, 45m, 12:10, no.
+P14 Noah Patel, Urgent, GENERAL, 80m, 12:25, no.
+P15 Olivia Green, Emergency, CARDIAC, 120m, 12:40, yes.
+P16 Peter Adams, Elective, ENT, 50m, 13:00, no.
 
 Times are minutes from midnight (480 = 08:00, 1200 = 20:00). The OR window passed to scheduling is 08:00-20:00.
 
@@ -115,31 +119,40 @@ Choice 8 asks for a patient ID and discharge time in HH:mm format. The patient m
 4.8 KMP search
 Choice 7 searches every patient and staff name. KMP computes the pattern's LPS (longest proper prefix that is also suffix) array, then scans without backing up the text pointer. Inputs are lowercased for case-insensitive search. Per name, time is O(n+m), preprocessing O(m). Empty pattern returns true and matches all records; empty text with nonempty pattern returns false.
 
+4.9 Browser and REST application workflow
+The Spring Boot entry point is web.HospitalSchedulerApplication. Run it with `mvn spring-boot:run`; the static dashboard is served at http://localhost:8080. On first startup, DemoDataInitializer inserts the sample hospitals and patients only when both tables are empty. The dashboard reads hospital and patient state from the API. Running a schedule calls POST /api/schedules/run; patient intake uses POST /api/patients, emergency intake uses POST /api/emergencies, and discharge uses POST /api/patients/{id}/discharge. The controller delegates to SchedulerService, which loads entities, maps them to the same plain domain models used by the console, invokes SchedulingEngine, validates the result, and writes schedule and bed-reservation history transactionally. The file-backed H2 database is stored in ./data/hospital_scheduler relative to the working directory, so REST state survives process restarts. The console Main remains a separate, in-memory entry point.
+
 ======================================================================
 5. COURSE OUTCOME (CO) MAPPING
 ======================================================================
 
-This maps algorithms in the current source to the six handout COs; it does not claim the full syllabus was implemented.
+The handout defines six outcomes. This map names the related syllabus topics, shows where the project demonstrates them, and states what is not present. A topic connection is not a claim that the project implements the whole CO.
 
-CO1: Select a strategy for a problem class.
-Shown by choosing min-cost flow for capacity-constrained routing, LPT approximation for OR workload, subset DP for OR timing, Hungarian assignment for beds, and KMP for substring search. CO1 is the rationale connecting the pipeline.
+CO1 — Problem classification and algorithm selection
+Handout topics: identify problem signatures such as substring search, sequence alignment, flow on a network, and NP-hard scheduling; choose an appropriate advanced algorithm.
+Project connection: KMP handles substring search; min-cost maximum flow handles hospital capacity routing; subset DP handles bounded OR sequencing; LPT is a practical scheduling heuristic; Hungarian assignment allocates beds. The stages illustrate matching a subproblem to a strategy. Sequence alignment is not implemented.
 
-CO2: Linear-time string algorithms / suffix structures.
-Implemented: KMP name search, O(n+m) per record. Not implemented: Z, Rabin-Karp, Aho-Corasick, suffix arrays/LCP, suffix automaton.
+CO2 — Linear-time string algorithms and suffix structures
+Handout topics: KMP, Z-function, Rabin-Karp with rolling hash, suffix array, LCP array, and suffix automaton concepts.
+Project connection: KMPAlgorithm performs case-insensitive patient/staff name substring search in O(n+m) time per name, with O(m) LPS preprocessing/storage. Z-function, Rabin-Karp, suffix arrays/LCP, and suffix automata are not implemented. Search is a utility feature, not part of the scheduling pipeline.
 
-CO3: Advanced DP patterns.
-Implemented: subset DP sequences unique patients for one OR with existing reservations, surgeon availability, priority, and waiting cost. Not implemented: tree/SOS DP, matrix-chain, or sequence alignment.
+CO3 — Advanced dynamic programming
+Handout topics: interval DP, bitmask DP, DP on trees, and DP on subsets for combinatorial optimization.
+Project connection: DPScheduler uses a subset/bitmask state to choose the order and start times of unique patients on an OR, considering arrival, existing bookings, surgeon availability, priority, and waiting cost. The exact subset search is bounded to at most 14 patients per OR; larger cases use a fixed-candidate weighted-interval fallback. This is exponential-state bounded exact search, not a polynomial-time solution in general. Interval DP and tree DP are not implemented.
 
-CO4: Network flow and max-flow/min-cut.
-Implemented: min-cost maximum flow routes each patient to at most one compatible hospital within separate ICU/General capacities, minimizing preferred-hospital and distance costs among maximum flows. No min cut is computed or reported. Hungarian bed assignment is separate from flow.
+CO4 — Network flow, max-flow/min-cut, matching, and assignment
+Handout topics: Ford-Fulkerson with Edmonds-Karp, Dinic at intuition level, max-flow/min-cut duality, matching, assignment, and capacity-constrained models.
+Project connection: HospitalRouter uses successive shortest augmenting paths with Bellman-Ford on a residual graph to compute min-cost maximum flow for patient-to-hospital routing with separate ICU/General bed capacities. NetworkFlow.java also contains a standalone Edmonds-Karp implementation, but it is not the active routing implementation. The app does not calculate or report a min cut and does not implement Dinic. HungarianAlgorithm separately assigns patients to beds via a cost matrix; this is assignment, not max flow.
 
-CO5: NP-hardness and approximation.
-Implemented: LPT load-balancing heuristic, greedily assigning to the least-loaded compatible OR. No NP-completeness reductions or approximation ratio calculation is implemented. Do not claim a proved ratio for the full hospital problem.
+CO5 — Complexity classes, reductions, and approximation
+Handout topics: P, NP, NP-complete, NP-hard; canonical polynomial reductions such as 3-SAT to vertex cover to independent set; approximation algorithms with proved ratios for selected NP-hard problems.
+Project connection: operating-room workload allocation is treated as a hard scheduling problem, and ApproxScheduler uses LPT to balance loads among compatible rooms. The project does not implement complexity-class demonstrations, reductions, or a proof/calculation of an approximation ratio. Do not infer a guarantee for the full hospital scheduling pipeline from LPT.
 
-CO6: Randomized and parallel algorithms.
-Implemented: random-pivot quicksort before LPT. Output sort is correct while runtime is probabilistic (expected O(n log n), worst O(n^2)); this is Las Vegas-style randomization. No parallel primitives, Miller-Rabin, or randomized hashing is implemented.
+CO6 — Randomized and parallel algorithms
+Handout topics: Las Vegas and Monte Carlo algorithms; parallel prefix sum, parallel reduce, and work-span analysis.
+Project connection: RandomizedQuickSort uses a random pivot to order surgery durations before LPT. It returns a correctly sorted order (Las Vegas-style), with expected O(n log n) and worst-case O(n^2) runtime. The project does not implement Monte Carlo algorithms, parallel primitives, or work-span analysis.
 
-Hungarian/Kuhn-Munkres is cross-cutting for assignment and most naturally relates to CO4's capacity/assignment theme, but should be named separately from max flow.
+Cross-cutting algorithm: Hungarian/Kuhn-Munkres is used for patient-bed assignment and relates to CO4's assignment theme, but remains distinct from the flow-based hospital routing stage.
 
 ======================================================================
 6. HOW TO INTERPRET OUTPUT
@@ -160,26 +173,29 @@ Schedule view prints OR slots, patient ID/name, priority, and the assigned surge
 7. ACTUAL SAMPLE RUN AND OUTPUT EXPLANATION
 ======================================================================
 
-I ran the current compiled program with menu sequence 3, 5, 6, 0 (run pipeline,
-show KPIs, show schedule, exit). This observed run routed 6 patients to City
-Central, 3 to Suburban Medical, and 3 to Regional Trauma Center. All 12 patients
-were scheduled, and the schedule contained exactly 12 OR slots.
+I ran the expanded 16-patient sample with menu sequence 3, 5, 6, 0. This observed
+run routed 7 patients to City Central, 5 to Suburban Medical, and 4 to Regional
+Trauma Center. Fifteen patients were scheduled; Fiona Ray (P6) remained pending
+because the cardiac OR and qualified-surgeon time available in the modeled
+schedule was insufficient for all routed cases. The schedule contained 15 OR slots.
 
 Observed OR assignments (times shown in 12-hour clock):
 
   City Central Hospital
     OR-A: P5 Evan Wright 11:20 AM-12:05 PM; P11 Kevin Ford 12:05-12:55 PM;
-          P1 Alice Brown 12:55-1:55 PM; P9 Ian Cook 1:55-3:40 PM.
+          P1 Alice Brown 12:55-1:55 PM; P14 Noah Patel 1:55-3:15 PM;
+          P9 Ian Cook 3:15-5:00 PM.
     OR-B: P2 Bob Smith 8:20-11:20 AM.
     OR-C: P3 Charlie Davis 9:00-11:00 AM.
 
   Suburban Medical
-    OR-D: P7 George Hill 10:30-11:45 AM; P4 Diana Prince 11:45 AM-1:15 PM.
-    OR-E: P8 Hannah Lee 10:00-10:30 AM.
+    OR-D: P4 Diana Prince 9:00-10:30 AM; P7 George Hill 10:30-11:45 AM.
+    OR-E: P8 Hannah Lee 11:45 AM-12:15 PM; P13 Maya Chen 12:15-1:00 PM;
+          P16 Peter Adams 1:00-1:50 PM.
 
   Regional Trauma Center
-    Trauma OR-1: P12 Lucy Kane 1:20-2:50 PM; P10 Julia Bell 2:50-5:20 PM.
-    Trauma OR-2: P6 Fiona Ray 9:20 AM-1:20 PM.
+    Trauma OR-1: P10 Julia Bell 10:40 AM-1:10 PM; P12 Lucy Kane 1:10-2:40 PM.
+    Trauma OR-2: P15 Olivia Green 2:40-4:40 PM.
 
 Each printed operation also names the qualified surgeon assigned to it. The
 result shows why routing, room assignment, and the final clock-time schedule
@@ -187,14 +203,14 @@ are separate outputs: a hospital can receive a patient before OR and staff
 constraints determine the feasible start.
 
 Observed KPI values:
-  Processing Rate: 12/12 patients scheduled (100%).
-  Average Waiting Time: 108 minutes.
-  Makespan: 5:20 PM.
-  Bed Reservations: City Central 66.7%, Suburban 50.0%, Trauma Center 42.9%.
+  Processing Rate: 15/16 patients scheduled (93%).
+  Average Waiting Time: 85 minutes.
+  Makespan: 5:00 PM.
+  Bed Reservations: City Central 77.8%, Suburban 83.3%, Trauma Center 42.9%.
   OR utilization, clipped to 08:00-20:00:
-    City Central OR-A 36.1%, OR-B 25.0%, OR-C 16.7%.
-    Suburban OR-D 22.9%, OR-E 4.2%.
-    Trauma OR-1 33.3%, OR-2 33.3%.
+    City Central OR-A 47.2%, OR-B 25.0%, OR-C 16.7%.
+    Suburban OR-D 22.9%, OR-E 17.4%.
+    Trauma OR-1 33.3%, OR-2 16.7%.
 
 Processing rate counts scheduled patient flags; the regression suite checks that
 this equals the number of stored OR slots. Average waiting time is the integer
@@ -212,7 +228,7 @@ A dependency-free regression suite is available at tests/RegressionTests.java an
 
 TC-01 Full pipeline
 Input: 3, then 6, then 0.
-Expected: reset patient/resource state, route, balance OR workload, schedule with DP, reserve beds, and print schedules. Current sample run: 12/12 patient flags and 12 OR slots.
+Expected: reset patient/resource state, route, balance OR workload, schedule with DP, reserve beds, and print schedules. Recorded expanded sample run: 15/16 patient flags and 15 OR slots; one routed patient remains pending under current staff/room constraints.
 
 TC-02 Hospitals
 Input: 1, then 0.
@@ -220,11 +236,11 @@ Expected: three rows show hospital name/location, available/total beds, OR count
 
 TC-03 Patients
 Input: 2, then 0.
-Expected: 12 records in ID order with age, priority, surgery, duration, arrival, ICU flag. It omits scheduling state and assignments.
+Expected: 16 records in ID order with age, priority, surgery, duration, arrival, ICU flag. It omits scheduling state and assignments.
 
 TC-04 KPI before scheduling
 Input: 5, then 0 in a fresh process.
-Expected: 0/12 scheduled, no waiting/makespan lines, zero bed and OR utilization. Inferred from report code.
+Expected: 0/16 scheduled, no waiting/makespan lines, zero bed and OR utilization. Inferred from report code.
 
 TC-05 Repeat pipeline
 Input: 3, 3, 5, then 0.
@@ -372,13 +388,13 @@ following changes:
 12. OR utilization clips each stored operation to the configured reporting
     window and caps the ratio at 100 percent.
 
-The updated default run (menu sequence 3, 5, 6) scheduled 12/12 patients in
-the observed execution. Average wait was 108 minutes and makespan was 5:20 PM.
-The schedule contained twelve entries, matching the scheduled-patient count.
-The updated program reports the assigned surgeon on each procedure. Since the
-patient list is routed by preference/distance and randomized quicksort can
-change equal-duration ties, the precise schedule should be read from the current
-run rather than treated as a fixed expected schedule.
+The expanded default run (menu sequence 3, 5, 6) scheduled 15/16 patients in
+the recorded execution. Average wait was 85 minutes and makespan was 5:00 PM.
+The schedule contained fifteen entries, matching the scheduled-patient count.
+The program reports the assigned surgeon on each procedure. Since routing uses
+preference/distance and randomized quicksort can change equal-duration ties,
+the precise schedule should be read from the current run rather than treated as
+a fixed expected schedule.
 
 To compile and run regression checks from PowerShell:
 
@@ -406,7 +422,7 @@ The Spring REST application now stores operational state in a local, file-backed
 Persistence design
 - JPA entities represent hospitals, operating rooms, beds, staff, patients, schedules, bed reservations, and discharge records. Enumerated schedule and reservation states retain lifecycle and history.
 - Spring Data repositories provide database access. DomainModelMapper reconstructs the existing plain Java models, including active reservations and schedule history, so the routing and scheduling algorithms remain independent of JPA.
-- DemoDataInitializer loads the existing sample dataset only when the database has no hospital and patient records. Restarting the service does not reseed or overwrite an existing dataset.
+- DemoDataInitializer seeds all 16 sample patients into a fresh database. It adds P13-P16 only when an existing database contains exactly the original 12 demo patients; databases with added or customized patient records are not modified. Restarting does not overwrite existing records.
 - SchedulerService coordinates REST actions in transactions. A schedule run validates and persists the resulting schedule and active bed reservations, while prior schedule records are retained as superseded history. Emergency replanning updates future cases while preserving procedures already in progress. Discharge releases a reservation and writes a durable discharge record.
 - The service validates feasible OR, qualified surgeon, bed type, and reservation interval before saving assignments. Database transaction rollback is intended to prevent partially saved scheduling updates if an operation fails.
 
@@ -414,7 +430,7 @@ Database configuration and API
 The default JDBC URL uses H2 in file mode at ./data/hospital_scheduler with AUTO_SERVER enabled. The schema is updated on application startup. H2 console access is enabled at /h2-console for local development. The data directory is ignored by Git. The REST API retains the existing hospital, patient, scheduling, emergency, and discharge workflows and provides patient creation plus schedule and discharge history reads. Schedule records include their status, algorithm path, and timestamps.
 
 Verification recorded for this update
-A manual local application run confirmed that the service seeded three hospitals and 12 patients, generated 12 active schedules, and retained those records after a process restart. An emergency patient was then created and scheduled; discharge was recorded, and a further restart retained the 13 patients, 13 schedule records (12 active and one completed), and one discharge record. These observations verify persistence across restart for the exercised paths.
+The previously recorded persistence walkthrough used the original 12-patient demo baseline and confirmed schedule and discharge history survived restarts. The current fresh demo baseline contains 16 patients. The expanded command-line run recorded in Section 7 scheduled 15 of 16; one patient remained pending because routing feasibility and OR/surgeon scheduling are distinct stages.
 
 The existing dependency-free algorithm regression suite passed 125 checks in the preceding implementation work. PersistenceIntegrationTests.java adds coverage for idempotent seed data, patient persistence, schedule/discharge history, schedule supersession, and rollback behavior, but those integration tests were not executed: Maven could not resolve the configured Spring Boot 3.5.16 parent in the restricted environment. Therefore, the report does not claim that the integration suite or rollback test has passed. The REST application was compiled and exercised using the locally available dependencies.
 

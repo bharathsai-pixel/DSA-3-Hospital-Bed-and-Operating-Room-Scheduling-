@@ -51,7 +51,10 @@ public class SchedulerService {
     }
 
     @Transactional
-    public Patient addEmergency(String name, String surgeryType, int duration, boolean requiresICU, String arrivalTime) {
+    public Patient addEmergency(EmergencyIntakeRequest request) {
+        String name=request.name(), surgeryType=request.surgeryType(), arrivalTime=request.arrivalTime();
+        int duration=request.durationMinutes();
+        boolean requiresICU=request.requiresICU();
         Patient.SurgeryType type;
         try {
             type=Patient.SurgeryType.valueOf(surgeryType==null?"":surgeryType.trim().toUpperCase(Locale.ROOT));
@@ -61,10 +64,21 @@ public class SchedulerService {
         State state=load();
         Patient emergency=SchedulingEngine.processEmergency(state.patients,state.hospitals,name,type,duration,requiresICU,
                 SchedulingEngine.parseClockTime(arrivalTime));
+        emergency.setAge(request.age());
+        emergency.setDemographics(request.gender()==null||request.gender().isBlank()?null:request.gender(),
+                request.bloodGroup()==null||request.bloodGroup().isBlank()?null:request.bloodGroup(),
+                request.allergies()==null||request.allergies().isBlank()?null:request.allergies().trim());
         int id=emergency.getId();
         validate(state, arrivalTime, id);
         persistResults(state,true,id);
         return state.patients.stream().filter(patient -> patient.getId()==id).findFirst().orElseThrow();
+    }
+
+    /** Compatibility overload for existing internal callers and integration tests. */
+    @Transactional
+    public Patient addEmergency(String name, String surgeryType, int duration, boolean requiresICU, String arrivalTime) {
+        return addEmergency(new EmergencyIntakeRequest(name, 40, null, null, null, surgeryType,
+                duration, arrivalTime, requiresICU));
     }
 
     @Transactional

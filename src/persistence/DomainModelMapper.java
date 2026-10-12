@@ -33,10 +33,12 @@ public class DomainModelMapper {
     }
 
     public PatientEntity toEntity(Patient patient, PatientEntity.Status status) {
-        return new PatientEntity(patient.getId(), patient.getName(), patient.getAge(), patient.getPriority(),
+        PatientEntity entity = new PatientEntity(patient.getId(), patient.getName(), patient.getAge(), patient.getPriority(),
                 patient.getSurgeryType(), patient.getSurgeryDuration(), patient.getArrivalTime(),
                 patient.getPreferredHospitalId(), patient.requiresICU(), patient.getLatitude(), patient.getLongitude(),
                 status, patient.getDischargeTime());
+        entity.setDemographics(patient.getGender(), patient.getBloodGroup(), patient.getAllergies());
+        return entity;
     }
 
     public Patient toDomain(PatientEntity entity) {
@@ -44,6 +46,7 @@ public class DomainModelMapper {
                 entity.getSurgeryType(), entity.getSurgeryDuration(), entity.getArrivalTime(),
                 entity.getPreferredHospitalId(), entity.isRequiresIcu());
         patient.setLocation(entity.getLatitude(), entity.getLongitude());
+        patient.setDemographics(entity.getGender(), entity.getBloodGroup(), entity.getAllergies());
         if (entity.getStatus() == PatientEntity.Status.DISCHARGED)
             patient.discharge(Math.max(0, entity.getDischargeTime()));
         return patient;

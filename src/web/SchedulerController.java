@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -50,10 +51,15 @@ public class SchedulerController {
         return schedulerService.runScheduling();
     }
 
+    @PostMapping("/emergencies/intake")
+    public Patient addEmergency(@Valid @RequestBody EmergencyIntakeRequest request) {
+        return schedulerService.addEmergency(request);
+    }
+
     @PostMapping("/emergencies")
-    public Patient addEmergency(@RequestBody EmergencyIntakeRequest request) {
-        return schedulerService.addEmergency(request.name(), request.surgeryType(),
-                request.durationMinutes(), request.requiresICU(), request.arrivalTime());
+    public Patient addEmergencyLegacy(@RequestBody LegacyEmergencyIntakeRequest request) {
+        return schedulerService.addEmergency(request.name(), request.surgeryType(), request.durationMinutes(),
+                request.requiresICU(), request.arrivalTime());
     }
 
     @PostMapping("/patients/{id}/discharge")
